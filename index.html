@@ -3,25 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blog</title>
+  <title>The Research Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>My Blog</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="blog.html">Posts</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Welcome!</h2>
-    <p>This is my personal blog. I write about things I find interesting.</p>
-  </main>
+  <div class="page-wrapper">
 
-  <footer>
-    <p>Made by me 🙂</p>
-  </footer>
+    <header>
+      <div class="header-top">
+        <span class="issue-label">Est. 2025 — Volume I</span>
+      </div>
+      <h1 class="blog-title">The Research Journal</h1>
+      <p class="blog-tagline">Medicine · Philosophy · Observations</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="blog.html">Posts</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="header-divider"></div>
+    </header>
+
+    <main>
+      <section class="welcome">
+        <p class="drop-cap">Welcome to my research journal — a space for ideas at the intersection of medicine, human behavior, and the nature of things. Written in the spirit of a scholar's notebook.</p>
+      </section>
+
+      <section class="posts-section">
+        <h2 class="section-heading">Latest Entries</h2>
+
+        <article class="post-card">
+          <span class="post-date">May 17, 2025</span>
+          <h3><a href="#">On the pharmacology of attention</a></h3>
+          <p>A brief exploration of how dopaminergic pathways shape the way we focus, and what this means for learning...</p>
+          <a href="#" class="read-more">Continue reading →</a>
+        </article>
+
+        <article class="post-card">
+          <span class="post-date">May 10, 2025</span>
+          <h3><a href="#">Notes from the anatomy hall</a></h3>
+          <p>First observations from the dissection lab — what the body teaches you that no textbook can...</p>
+          <a href="#" class="read-more">Continue reading →</a>
+        </article>
+
+      </section>
+    </main>
+
+    <footer>
+      <p class="footer-quote">"The art of medicine consists of amusing the patient while nature cures the disease." — Voltaire</p>
+      <p class="footer-copy">© 2025 · The Research Journal</p>
+    </footer>
+
+  </div>
+
 </body>
 </html>
