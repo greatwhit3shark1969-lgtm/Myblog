@@ -496,8 +496,19 @@ footer {
 }
 
 /* ---- TAMIL FONT ---- */
+/* Tamil body text */
 [lang="ta"] {
-  font-family: 'Noto Sans Tamil', sans-serif;
-  line-height: 2;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 1.05rem;
+  line-height: 2.1;
+}
+
+/* Tamil titles — use this class on Tamil post titles */
+.ta-title {
+  font-family: 'Arima', serif;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  color: var(--accent);
+  letter-spacing: 2px;
+  line-height: 1.3;
 }
 
