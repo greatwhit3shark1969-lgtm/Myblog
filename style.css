@@ -454,4 +454,50 @@ footer {
   color: var(--text-dim);
   margin-bottom: 1rem;
 }
+/* ---- POST TAGS ---- */
+.post-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 0;
+}
+
+.post-tag {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 0.1rem 0.5rem;
+  letter-spacing: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.post-tag:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---- POST QUOTE ---- */
+.post-quote {
+  border-left: 2px solid var(--border-mid);
+  padding: 0.8rem 1rem;
+  margin: 1.5rem 0;
+  background: #0a0e0a;
+}
+
+.post-quote p {
+  margin-bottom: 0.5rem;
+}
+
+.post-quote footer {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+/* ---- TAMIL FONT ---- */
+[lang="ta"] {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  line-height: 2;
+}
 
