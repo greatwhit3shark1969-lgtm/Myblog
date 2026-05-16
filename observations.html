@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observations — AHAMED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <span class="topbar-left">SYS://JOURNAL&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
+      <span class="sys-time" id="clock">00:00:00</span>
+    </div>
+
+    <header>
+      <div class="site-identity">
+        <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
+        <p class="blog-tagline">medicine &nbsp;/&nbsp; philosophy &nbsp;/&nbsp; observations</p>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Posts</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="h-rule"></div>
+    </header>
+
+    <main class="site-main">
+      <div class="col-main">
+
+        <div class="topic-header">
+          <span class="prompt">&gt;&gt;</span>
+          <h2 class="topic-title">OBSERVATIONS</h2>
+        </div>
+        <p class="topic-desc">Notes on everyday life, human behaviour, and things worth paying attention to.</p>
+        <div class="h-rule-thin"></div>
+
+        <!-- PASTE POST CARDS HERE when you have posts -->
+        <!-- Copy this block for each post:
+
+        <article class="post-card">
+          <div class="post-meta">
+            <span class="post-id">#001</span>
+            <span class="post-date">2025-06-01</span>
+          </div>
+          <h3><a href="post-001.html">Post Title</a></h3>
+          <p>Short description of the post.</p>
+          <a href="post-001.html" class="read-more">[continue reading →]</a>
+        </article>
+
+        -->
+
+        <p class="no-posts">&gt; No entries yet under this topic.</p>
+
+      </div>
+
+      <aside class="col-sidebar">
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">All Posts</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Topics</h3>
+          <ul>
+            <li><a href="medicine.html">Medicine</a></li>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="observations.html">Observations</a></li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="h-rule"></div>
+      <p class="footer-copy">SYS://JOURNAL &copy; 2025 &nbsp;&mdash;&nbsp; Ahamed</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
