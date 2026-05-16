@@ -10,10 +10,6 @@
 </head>
 <body>
 
-  <canvas id="matrix-bg"></canvas>
-
-  <div class="scanline"></div>
-
   <div class="page-wrapper">
 
     <header>
@@ -22,11 +18,8 @@
         <span class="sys-time" id="clock">00:00:00</span>
       </div>
 
-      <div class="title-block">
-        <p class="boot-text">&gt; LOADING PERSONAL_JOURNAL.exe...</p>
-        <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
-        <p class="blog-tagline">&gt; medicine / philosophy / observations</p>
-      </div>
+      <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
+      <p class="blog-tagline">&gt; medicine / philosophy / observations</p>
 
       <nav>
         <a href="index.html">[HOME]</a>
@@ -34,11 +27,10 @@
         <a href="about.html">[ABOUT]</a>
       </nav>
 
-      <div class="header-divider">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div>
+      <div class="header-divider"></div>
     </header>
 
     <main>
-
       <section class="welcome">
         <p class="terminal-intro">
           <span class="prompt">&gt;&gt; </span>Welcome. This is a digital research journal — a space for ideas at the intersection of medicine, human behavior, and the nature of things.
@@ -47,50 +39,18 @@
 
       <section class="posts-section">
         <h2 class="section-heading">&gt; RECENT_ENTRIES /</h2>
-
-        <article class="post-card">
-          <div class="post-meta">
-            <span class="post-id">[ ENTRY_001 ]</span>
-            <span class="post-date">2025.05.17</span>
-          </div>
-          <h3><a href="post-1.html">On the pharmacology of attention</a></h3>
-          <p>A brief exploration of how dopaminergic pathways shape the way we focus, and what this means for learning and memory consolidation...</p>
-          <a href="post-1.html" class="read-more">&gt; READ_MORE</a>
-        </article>
-
-        <article class="post-card">
-          <div class="post-meta">
-            <span class="post-id">[ ENTRY_002 ]</span>
-            <span class="post-date">2025.05.10</span>
-          </div>
-          <h3><a href="#">Notes from the anatomy hall</a></h3>
-          <p>First observations from the dissection lab — what the body teaches you that no textbook can ever fully convey...</p>
-          <a href="#" class="read-more">&gt; READ_MORE</a>
-        </article>
-
-        <article class="post-card">
-          <div class="post-meta">
-            <span class="post-id">[ ENTRY_003 ]</span>
-            <span class="post-date">2025.05.03</span>
-          </div>
-          <h3><a href="#">The philosophy of diagnosis</a></h3>
-          <p>What separates pattern recognition from true understanding? A look at clinical reasoning through a philosophical lens...</p>
-          <a href="#" class="read-more">&gt; READ_MORE</a>
-        </article>
-
+        <p class="no-posts">&gt; No entries yet. Check back soon.</p>
       </section>
     </main>
 
     <footer>
-      <div class="footer-divider">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
-      <p class="footer-quote">&gt; "The art of medicine consists of amusing the patient while nature cures the disease." — Voltaire</p>
-      <p class="footer-copy">SYS://JOURNAL © 2025 — ALL_RIGHTS_RESERVED</p>
+      <div class="header-divider"></div>
+      <p class="footer-copy">SYS://JOURNAL © 2025</p>
     </footer>
 
   </div>
 
   <script>
-    // Live clock
     function updateClock() {
       const now = new Date();
       const h = String(now.getHours()).padStart(2, '0');
@@ -100,37 +60,6 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
-
-    // Matrix rain canvas
-    const canvas = document.getElementById('matrix-bg');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ01アイウエオ10';
-    const fontSize = 14;
-    const cols = Math.floor(canvas.width / fontSize);
-    const drops = Array(cols).fill(1);
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0f3d0f';
-      ctx.font = `${fontSize}px Share Tech Mono`;
-      drops.forEach((y, i) => {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillStyle = i % 7 === 0 ? '#1a7a1a' : '#0a2e0a';
-        ctx.fillText(char, i * fontSize, y * fontSize);
-        if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      });
-    }
-    setInterval(drawMatrix, 60);
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
   </script>
 
 </body>
