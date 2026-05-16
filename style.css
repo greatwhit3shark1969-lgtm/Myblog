@@ -432,4 +432,26 @@ footer {
 .social-link:hover {
   color: var(--link-hover);
 }
+/* ---- TOPIC PAGE ---- */
+
+.topic-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.topic-title {
+  font-family: 'VT323', monospace;
+  font-size: clamp(2rem, 8vw, 3rem);
+  color: var(--accent);
+  letter-spacing: 4px;
+  line-height: 1;
+}
+
+.topic-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
 
