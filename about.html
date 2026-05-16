@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — AHAMED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <span class="topbar-left">SYS://JOURNAL&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
+      <span class="sys-time" id="clock">00:00:00</span>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="site-identity">
+        <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
+        <p class="blog-tagline">medicine &nbsp;/&nbsp; philosophy &nbsp;/&nbsp; observations</p>
+      </div>
+
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Posts</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="h-rule"></div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="site-main">
+
+      <div class="col-main">
+
+        <h2 class="section-label">About</h2>
+        <div class="h-rule-thin"></div>
+
+        <!-- PHOTO -->
+        <div class="about-photo-wrap">
+          <img
+            src="https://radiopotti023.wordpress.com/wp-content/uploads/2025/05/20250225_2225408265285377546691390.jpg?w=1024"
+            alt="Ahamed Fuad"
+            class="about-photo"
+          />
+        </div>
+
+        <!-- QUOTE -->
+        <blockquote class="about-quote">
+          <p class="about-quote-text"><em>நிகழ்ந்ததனைத்தும் கனவென்று கொள்க! இல்லையென்று எண்ணினால் இல்லாமல் ஆகுமளவுக்கு கனிவு கொண்டதே இங்குள்ள அனைத்தும்.</em></p>
+          <footer class="about-quote-source">
+            <span>— Jeyamohan, வெண்முரசு</span><br>
+            <span>நூல்: 23 – நீர்ச்சுடர்</span>
+          </footer>
+        </blockquote>
+
+        <!-- BIO -->
+        <div class="about-bio">
+          <p class="about-name"><span class="prompt">&gt;&gt;</span> I'm Ahamed Fuad</p>
+          <p class="about-body">I am a Medical Student, who had a long stood passion for Writing and Art. Here I post both in Tamil and English.</p>
+          <p class="about-cta"><strong>Do Read. Thanks :)</strong></p>
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="about-social">
+          <a href="https://bsky.app/profile/radiopotti.bsky.social" class="social-link" target="_blank" rel="noopener">
+            <span class="prompt">&gt;</span> Bluesky &rarr; @radiopotti.bsky.social
+          </a>
+        </div>
+
+        <div class="h-rule-thin" style="margin-top:2rem;"></div>
+        <a href="index.html" class="back-link">&larr; back to home</a>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="col-sidebar">
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">All Posts</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Topics</h3>
+          <ul>
+            <li><a href="#">Medicine</a></li>
+            <li><a href="#">Philosophy</a></li>
+            <li><a href="#">Observations</a></li>
+          </ul>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer>
+      <div class="h-rule"></div>
+      <p class="footer-copy">SYS://JOURNAL &copy; 2025 &nbsp;&mdash;&nbsp; Ahamed</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
