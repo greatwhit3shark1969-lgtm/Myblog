@@ -140,6 +140,17 @@
       const m = String(now.getMinutes()).padStart(2, '0');
       const s = String(now.getSeconds()).padStart(2, '0');
       document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+      // Counts all post cards on blog.html and updates the number
+fetch('blog.html')
+  .then(r => r.text())
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const count = doc.querySelectorAll('.post-card').length;
+    const el = document.getElementById('entry-count');
+    if (el) el.textContent = count;
+  });
+
     }
     setInterval(updateClock, 1000);
     updateClock();
