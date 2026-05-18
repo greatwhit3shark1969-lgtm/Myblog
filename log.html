@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log — AHAMED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Kavivanar&family=Tiro+Tamil:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <span class="topbar-left">SYS://JOURNAL&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
+      <span class="sys-time" id="clock">00:00:00</span>
+    </div>
+
+    <header>
+      <div class="site-identity">
+        <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
+        <p class="blog-tagline">medicine &nbsp;/&nbsp; philosophy &nbsp;/&nbsp; observations</p>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Posts</a>
+        <a href="log.html">Log</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="h-rule"></div>
+    </header>
+
+    <main class="site-main">
+      <div class="col-main">
+
+        <h2 class="section-label">Log</h2>
+        <p class="page-desc">&gt; Books and films — what I'm reading, watching, and what I thought of them.</p>
+        <div class="h-rule-thin"></div>
+
+        <!-- =====================================================
+             HOW TO ADD A LOG ENTRY:
+             Copy one <div class="log-entry"> block.
+             Status options: reading / watching / finished / dropped
+             Rating: fill ★ for rated, ☆ for empty, up to 5
+             Date: when you finished or started
+        ====================================================== -->
+
+        <!-- BOOKS -->
+        <section class="log-section">
+          <h3 class="log-type-heading">&gt; BOOKS /</h3>
+
+          <!-- EXAMPLE — delete and replace with your own -->
+          <div class="log-entry">
+            <div class="log-entry-top">
+              <span class="log-title">வெண்முரசு — நீர்ச்சுடர்</span>
+              <span class="log-status status-finished">finished</span>
+            </div>
+            <div class="log-entry-meta">
+              <span class="log-author">Jeyamohan</span>
+              <span class="log-rating">★★★★★</span>
+              <span class="log-date">2025-05</span>
+            </div>
+            <p class="log-note" lang="ta">மொழியின் அழகை உணர வைக்கும் நூல்.</p>
+          </div>
+
+          <div class="log-entry">
+            <div class="log-entry-top">
+              <span class="log-title">Being Mortal</span>
+              <span class="log-status status-reading">reading</span>
+            </div>
+            <div class="log-entry-meta">
+              <span class="log-author">Atul Gawande</span>
+              <span class="log-rating">★★★★☆</span>
+              <span class="log-date">2025-05</span>
+            </div>
+            <p class="log-note">On medicine, ageing, and what matters at the end.</p>
+          </div>
+          <!-- END EXAMPLES -->
+
+          <p class="log-add-hint">&gt; <em>Add your books above this line.</em></p>
+        </section>
+
+        <div class="h-rule-thin"></div>
+
+        <!-- FILMS -->
+        <section class="log-section">
+          <h3 class="log-type-heading">&gt; FILMS /</h3>
+
+          <!-- EXAMPLE — delete and replace with your own -->
+          <div class="log-entry">
+            <div class="log-entry-top">
+              <span class="log-title">Andrei Rublev</span>
+              <span class="log-status status-finished">finished</span>
+            </div>
+            <div class="log-entry-meta">
+              <span class="log-author">Tarkovsky, 1966</span>
+              <span class="log-rating">★★★★★</span>
+              <span class="log-date">2025-04</span>
+            </div>
+            <p class="log-note">Patience rewarded. One of the great films.</p>
+          </div>
+
+          <div class="log-entry">
+            <div class="log-entry-top">
+              <span class="log-title">Nayakan</span>
+              <span class="log-status status-finished">finished</span>
+            </div>
+            <div class="log-entry-meta">
+              <span class="log-author">Mani Ratnam, 1987</span>
+              <span class="log-rating">★★★★★</span>
+              <span class="log-date">2025-03</span>
+            </div>
+            <p class="log-note" lang="ta">காலத்தை வென்ற படம்.</p>
+          </div>
+          <!-- END EXAMPLES -->
+
+          <p class="log-add-hint">&gt; <em>Add your films above this line.</em></p>
+        </section>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="col-sidebar">
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">All Posts</a></li>
+            <li><a href="log.html">Log</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Topics</h3>
+          <ul>
+            <li><a href="medicine.html">Medicine</a></li>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="observations.html">Observations</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Status Key</h3>
+          <ul class="plain-list">
+            <li><span class="status-finished">finished</span></li>
+            <li><span class="status-reading">reading</span></li>
+            <li><span class="status-watching">watching</span></li>
+            <li><span class="status-dropped">dropped</span></li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="h-rule"></div>
+      <p class="footer-copy">SYS://JOURNAL &copy; 2025 &nbsp;&mdash;&nbsp; Ahamed</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
