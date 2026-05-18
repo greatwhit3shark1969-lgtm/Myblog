@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorites — AHAMED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Kavivanar&family=Tiro+Tamil:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <span class="topbar-left">SYS://JOURNAL&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
+      <span class="sys-time" id="clock">00:00:00</span>
+    </div>
+
+    <header>
+      <div class="site-identity">
+        <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
+        <p class="blog-tagline">medicine &nbsp;/&nbsp; philosophy &nbsp;/&nbsp; observations</p>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Posts</a>
+        <a href="log.html">Log</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="h-rule"></div>
+    </header>
+
+    <main class="site-main">
+      <div class="col-main">
+
+        <h2 class="section-label">Favorites</h2>
+        <p class="page-desc">&gt; Things I love and return to. Music, books, links, words.</p>
+        <div class="h-rule-thin"></div>
+
+        <!-- =====================================================
+             HOW TO ADD TO THIS PAGE:
+             Each section has a <ul class="fav-list">.
+             Add a new <li> for each item.
+             For links: <li><a href="URL">Title</a> — note</li>
+             For quotes: just add a new <blockquote> block
+             Tamil text: add lang="ta" to the element
+        ====================================================== -->
+
+        <!-- MUSIC -->
+        <section class="fav-section">
+          <h3 class="fav-heading">&gt; MUSIC /</h3>
+          <ul class="fav-list">
+            <li><a href="https://open.spotify.com" target="_blank" rel="noopener">Ilaiyaraaja — Salangai Oli OST</a> — plays like a memory</li>
+            <li><a href="https://open.spotify.com" target="_blank" rel="noopener">A.R. Rahman — Bombay OST</a></li>
+            <li lang="ta"><a href="https://open.spotify.com" target="_blank" rel="noopener">பாரதியார் பாடல்கள்</a> — எப்போதும் மனதில் ஒலிக்கும்</li>
+            <!-- Add more music items here -->
+          </ul>
+        </section>
+
+        <div class="h-rule-thin"></div>
+
+        <!-- BOOKS -->
+        <section class="fav-section">
+          <h3 class="fav-heading">&gt; BOOKS /</h3>
+          <ul class="fav-list">
+            <li lang="ta"><a href="#" >வெண்முரசு</a> — Jeyamohan — <span lang="ta">வாழ்நாளில் படிக்க வேண்டிய நூல்</span></li>
+            <li><a href="#">The Spirit Catches You and You Fall Down</a> — Anne Fadiman — medicine and culture</li>
+            <li><a href="#">Meditations</a> — Marcus Aurelius — return to this often</li>
+            <!-- Add more book items here -->
+          </ul>
+        </section>
+
+        <div class="h-rule-thin"></div>
+
+        <!-- LINKS -->
+        <section class="fav-section">
+          <h3 class="fav-heading">&gt; LINKS /</h3>
+          <ul class="fav-list">
+            <li><a href="https://www.are.na" target="_blank" rel="noopener">Are.na</a> — a quieter internet</li>
+            <li><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a> — ideas worth sitting with</li>
+            <li><a href="https://nautil.us" target="_blank" rel="noopener">Nautilus</a> — science and philosophy</li>
+            <!-- Add more links here -->
+          </ul>
+        </section>
+
+        <div class="h-rule-thin"></div>
+
+        <!-- QUOTES -->
+        <section class="fav-section">
+          <h3 class="fav-heading">&gt; QUOTES /</h3>
+
+          <!-- Copy this block for each quote -->
+          <blockquote class="fav-quote">
+            <p lang="ta">நிகழ்ந்ததனைத்தும் கனவென்று கொள்க! இல்லையென்று எண்ணினால் இல்லாமல் ஆகுமளவுக்கு கனிவு கொண்டதே இங்குள்ள அனைத்தும்.</p>
+            <footer>— Jeyamohan, <span lang="ta">வெண்முரசு — நீர்ச்சுடர்</span></footer>
+          </blockquote>
+
+          <blockquote class="fav-quote">
+            <p>The impediment to action advances action. What stands in the way becomes the way.</p>
+            <footer>— Marcus Aurelius, Meditations</footer>
+          </blockquote>
+
+          <blockquote class="fav-quote">
+            <p>Medicine is a social science, and politics is nothing else but medicine on a large scale.</p>
+            <footer>— Rudolf Virchow</footer>
+          </blockquote>
+          <!-- Add more quotes above this line -->
+
+        </section>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="col-sidebar">
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">All Posts</a></li>
+            <li><a href="log.html">Log</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Sections</h3>
+          <ul>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#books">Books</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#quotes">Quotes</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Topics</h3>
+          <ul>
+            <li><a href="medicine.html">Medicine</a></li>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="observations.html">Observations</a></li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="h-rule"></div>
+      <p class="footer-copy">SYS://JOURNAL &copy; 2025 &nbsp;&mdash;&nbsp; Ahamed</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
