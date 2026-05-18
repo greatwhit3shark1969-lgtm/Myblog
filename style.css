@@ -511,4 +511,146 @@ footer {
   letter-spacing: 2px;
   line-height: 1.3;
 }
+/* ---- SHARED ---- */
+.page-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+/* ---- LOG PAGE ---- */
+.log-section {
+  margin-bottom: 2rem;
+}
+
+.log-type-heading {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+
+.log-entry {
+  margin-bottom: 1.4rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.log-entry-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+}
+
+.log-title {
+  font-size: 0.95rem;
+  color: var(--text-bright);
+  font-weight: 700;
+}
+
+.log-entry-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+
+.log-rating {
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.log-note {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.log-add-hint {
+  font-size: 0.75rem;
+  color: var(--border-mid);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Status badges */
+.log-status,
+.status-finished,
+.status-reading,
+.status-watching,
+.status-dropped {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.status-finished  { color: var(--accent);   border-color: var(--accent); }
+.status-reading   { color: #66aaff;         border-color: #66aaff; }
+.status-watching  { color: #ffaa44;         border-color: #ffaa44; }
+.status-dropped   { color: var(--text-dim); border-color: var(--border); }
+
+/* ---- FAVORITES PAGE ---- */
+.fav-section {
+  margin-bottom: 2rem;
+}
+
+.fav-heading {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+
+.fav-list {
+  list-style: none;
+  padding: 0;
+}
+
+.fav-list li {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.6;
+}
+
+.fav-list li:last-child {
+  border-bottom: none;
+}
+
+.fav-list a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.fav-list a:hover {
+  color: var(--link-hover);
+}
+
+.fav-quote {
+  border-left: 2px solid var(--border-mid);
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  background: #0a0e0a;
+}
+
+.fav-quote p {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.85;
+  margin-bottom: 0.5rem;
+}
+
+.fav-quote footer {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: right;
+}
 
