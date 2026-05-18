@@ -654,3 +654,7 @@ footer {
   text-align: right;
 }
 
+.topbar [lang="ta"] {
+  font-size: 0.72rem;
+  line-height: inherit;
+}
