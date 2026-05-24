@@ -773,8 +773,8 @@ footer {
 
   .topbar-right {
     width: 100%;
-    justify-content: flex-end;
-    gap: 0.6rem;
+    justify-content: space-between;
+    gap: 0.8rem;
   }
 
   .theme-toggle {
