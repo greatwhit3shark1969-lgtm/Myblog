@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Philosophy — RadioPotti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
- <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
-
   <div class="page-wrapper">
 
     <div class="topbar">
-       <span class="topbar-left">SYS://<span lang="ta">பிரதி</span>&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
-      <span class="sys-time" id="clock">00:00:00</span>
+      <span class="topbar-left">SYS://<span lang="ta">பிரதி</span>&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
+      <span class="topbar-right">
+        <button class="theme-toggle" id="theme-toggle">[ dark / light ]</button>
+        <span class="sys-time" id="clock">00:00:00</span>
+      </span>
     </div>
 
-    <header>
+  <header>
       <div class="site-identity">
         <h1 class="blog-title">RadioPotti<span class="blink">_</span></h1>
-        <p class="blog-tagline">medicine &nbsp;/&nbsp; philosophy &nbsp;/&nbsp; observations</p>
+        <p class="blog-tagline">between Lethe and Mnemosyne</p>
       </div>
       <nav class="main-nav">
-  <a href="index.html">Home</a>
-  <a href="blog.html">Posts</a>
-  <a href="log.html">Log</a>
-  <a href="favorites.html">Favorites</a>
-  <a href="about.html">About</a>
-</nav>
-
+        <a href="index.html">Home</a>
+        <a href="blog.html">Posts</a>
+        <a href="log.html">Log</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="about.html">About</a>
+      </nav>
       <div class="h-rule"></div>
     </header>
 
@@ -44,8 +45,8 @@
         <p class="topic-desc">Posts on ideas, ethics, the nature of mind, and how we make sense of being.</p>
         <div class="h-rule-thin"></div>
 
-        <!-- PASTE POST CARDS HERE when you have posts -->
-        <!-- Copy this block for each post:
+        <!-- HOW TO ADD A POST:
+             Copy this block and fill in details:
 
         <article class="post-card">
           <div class="post-meta">
@@ -53,21 +54,18 @@
             <span class="post-date">2025-06-01</span>
           </div>
           <h3><a href="post-001.html">Post Title</a></h3>
-          <p>Short description of the post.</p>
-          <a href="post-001.html" class="read-more">[continue reading →]</a>
+          <a href="post-001.html" class="read-more">[continue reading &rarr;]</a>
         </article>
-
         -->
-<article class="post-card">
-            <div class="post-meta">
-              <span class="post-id">#003</span>
-              <span class="post-date">2025-05-19</span>
-            </div>
-            <h3><a href="post-003.html">A Brick's Dream</a></h3>
-            <p></p>
-            <a href="post-003.html" class="read-more">[continue reading →]</a>
-          </article>
-        <p class="no-posts">&gt; No entries yet under this topic.</p>
+
+        <article class="post-card">
+          <div class="post-meta">
+            <span class="post-id">#003</span>
+            <span class="post-date">2025-05-19</span>
+          </div>
+          <h3><a href="post-003.html">A Brick&#39;s Dream</a></h3>
+          <a href="post-003.html" class="read-more">[continue reading &rarr;]</a>
+        </article>
 
       </div>
 
@@ -75,20 +73,18 @@
         <div class="sidebar-block">
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
-            
-        <li> <a href="index.html">Home</a> </li>
-<li>  <a href="blog.html">Posts</a> </li>
-<li>  <a href="log.html">Log</a> </li>
-<li>  <a href="favorites.html">Favorites</a> </li>
-<li>  <a href="about.html">About</a> </li>
-            
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Posts</a></li>
+            <li><a href="log.html">Log</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="about.html">About</a></li>
           </ul>
         </div>
         <div class="sidebar-block">
           <h3 class="sidebar-heading">Topics</h3>
           <ul>
             <li><a href="medicine.html">Medicine</a></li>
-            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="philosophy.html" class="active">Philosophy</a></li>
             <li><a href="observations.html">Observations</a></li>
           </ul>
         </div>
@@ -99,20 +95,22 @@
       <div class="h-rule"></div>
       <p class="footer-copy">SYS://text v1.0 &copy; 2025 &nbsp;&mdash;&nbsp; Ahamed</p>
     </footer>
-
   </div>
 
   <script>
     function updateClock() {
       const now = new Date();
-      const h = String(now.getHours()).padStart(2, '0');
-      const m = String(now.getMinutes()).padStart(2, '0');
-      const s = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+      document.getElementById('clock').textContent =
+        [now.getHours(),now.getMinutes(),now.getSeconds()]
+        .map(n=>String(n).padStart(2,'0')).join(':');
     }
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+    setInterval(updateClock, 1000); updateClock();
 
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('rp-theme', next);
+    });
+  </script>
 </body>
 </html>
