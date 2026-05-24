@@ -68,8 +68,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.3rem;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
   font-size: 0.72rem;
   color: var(--text-dim);
   background: var(--topbar-bg);
@@ -81,6 +81,14 @@ body {
 }
 
 .topbar-left {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topbar-left {
   font-family: 'Courier Prime', monospace;
 }
 
@@ -88,6 +96,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  flex-shrink: 0;
 }
 
 .sys-time {
@@ -745,30 +754,53 @@ footer {
     padding: 0 0.9rem 2rem;
   }
 
-  /* Topbar */
+  /* Topbar: compress left text, lock right side */
   .topbar {
-    padding: 0.4rem 0.6rem;
+    padding: 0.3rem 0.5rem;
     gap: 0.4rem;
   }
 
   .topbar-left {
-    font-size: 0.66rem;
+    font-size: 0.6rem;
+  }
+
+  .topbar-right {
+    gap: 0.5rem;
+  }
+
+  .theme-toggle {
+    font-size: 0.58rem;
+    padding: 0.1rem 0.3rem;
   }
 
   .sys-time {
-    font-size: 0.95rem;
-    letter-spacing: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
-  /* Nav — scrollable strip on small screens */
+  /* Header: tighten spacing stack */
+  header {
+    margin-bottom: 1rem;
+  }
+
+  .site-identity {
+    margin-bottom: 0.5rem;
+  }
+
+  .h-rule {
+    margin: 0.4rem 0 0.8rem;
+  }
+
+  /* Nav — scrollable strip, tight padding */
   .main-nav {
     width: 100%;
+    margin-bottom: 0.6rem;
   }
 
   .main-nav a {
-    padding: 0.3rem 0.65rem;
-    font-size: 0.76rem;
-    letter-spacing: 0.5px;
+    padding: 0.28rem 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
   }
 
   /* Layout */
@@ -791,11 +823,6 @@ footer {
     font-size: 1rem;
     line-height: 2.05;
     margin-bottom: 1.4rem;
-  }
-
-  .post-body [lang="ta"] {
-    font-size: 1.1rem;
-    line-height: 2.25;
   }
 
   /* Tamil text globally on mobile */
@@ -828,6 +855,10 @@ footer {
   /* About photo */
   .about-photo {
     max-height: 280px;
+  }
+
+  .full-post {
+    min-width: 0;
   }
 }
 
