@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Favorites — AHAMED</title>
+  <title>Favorites — RadioPotti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Kavivanar&family=Tiro+Tamil:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('rp-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
 </head>
 <body>
 
   <div class="page-wrapper">
 
     <div class="topbar">
-       <span class="topbar-left">SYS://<span lang="ta">பிரதி</span>&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
-      <span class="sys-time" id="clock">00:00:00</span>
+      <span class="topbar-left">SYS://<span lang="ta">பிரதி</span>&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
+      <span style="display:flex;align-items:center;gap:0.8rem;">
+        <button class="theme-toggle" id="theme-toggle">[ dark / light ]</button>
+        <span class="sys-time" id="clock">00:00:00</span>
+      </span>
     </div>
 
     <header>
       <div class="site-identity">
-        <h1 class="blog-title">AHAMED<span class="blink">_</span></h1>
-        <p class="blog-tagline">medicine &nbsp;/&nbsp; philosophy &nbsp;/&nbsp; observations</p>
+        <h1 class="blog-title">RadioPotti<span class="blink">_</span></h1>
+        <p class="blog-tagline">between Lethe and Mnemosyne</p>
       </div>
       <nav class="main-nav">
         <a href="index.html">Home</a>
@@ -36,26 +45,15 @@
       <div class="col-main">
 
         <h2 class="section-label">Favorites</h2>
-        <p class="page-desc">&gt; Things I love and return for compfort from time to time. Music, books, links, words.</p>
+        <p class="page-desc">&gt; Things I love and return to for comfort from time to time. Music, books, links, words.</p>
         <div class="h-rule-thin"></div>
-
-        <!-- =====================================================
-             HOW TO ADD TO THIS PAGE:
-             Each section has a <ul class="fav-list">.
-             Add a new <li> for each item.
-             For links: <li><a href="URL">Title</a> — note</li>
-             For quotes: just add a new <blockquote> block
-             Tamil text: add lang="ta" to the element
-        ====================================================== -->
 
         <!-- MUSIC -->
         <section class="fav-section">
           <h3 class="fav-heading">&gt; MUSIC /</h3>
           <ul class="fav-list">
-            <li><a href="https://music.youtube.com/playlist?list=OLAK5uy_mYrVbKFmiX6uqYBlryzoaj4hYS_vmVLvg&si=uPev1CxGsViiZ6rP" target="_blank" rel="noopener">Ilaiyaraaja — Hey Ram (2000) </a> — plays like a memory</li>
+            <li><a href="https://music.youtube.com/playlist?list=OLAK5uy_mYrVbKFmiX6uqYBlryzoaj4hYS_vmVLvg&si=uPev1CxGsViiZ6rP" target="_blank" rel="noopener">Ilaiyaraaja — Hey Ram (2000)</a> — plays like a memory</li>
             <li><a href="https://youtube.com/playlist?list=OLAK5uy_krhGAQ-2ULbZ6vPEyrGxkNN_prUX4zimk&si=kO9rImheP-G_MnrR" target="_blank" rel="noopener">A.R. Rahman — Bombay (1995) OST</a></li>
-          
-            <!-- Add more music items here -->
           </ul>
         </section>
 
@@ -65,14 +63,9 @@
         <section class="fav-section">
           <h3 class="fav-heading">&gt; BOOKS /</h3>
           <ul class="fav-list">
-
-           <li lang="ta"><a href="#">ஒரு மனிதன் ஒரு வீடு ஒரு உலகம்.</a> - ஜெயகாந்தன்</li>
-
+            <li lang="ta"><a href="#">ஒரு மனிதன் ஒரு வீடு ஒரு உலகம்.</a> - ஜெயகாந்தன்</li>
             <li><a href="#">The Murder Of Roger Ackroyd</a> — Agatha Christie</li>
-
-            <li><a href="#">Siddhartha </a> — Herman Hesse</li>
-
-            <!-- Add more book items here -->
+            <li><a href="#">Siddhartha</a> — Herman Hesse</li>
           </ul>
         </section>
 
@@ -83,12 +76,9 @@
           <h3 class="fav-heading">&gt; LINKS /</h3>
           <ul class="fav-list">
             <li><a href="https://www.are.na/share/WhGjKtS" target="_blank" rel="noopener">Are.na</a> — my quieter internet.</li>
-            <li><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a> </li>
+            <li><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a></li>
             <li><a href="https://aeon.co/" target="_blank" rel="noopener">Aeon</a> — for science and philosophy</li>
-       
-
-<li><a href="https://www.ubu.com/index.html"target="_blank" rel="noopener">UbuWeb</a> — a shadow library of freely downloadable avant-garde artifacts.</li>
-            <!-- Add more links here -->
+            <li><a href="https://www.ubu.com/index.html" target="_blank" rel="noopener">UbuWeb</a> — a shadow library of freely downloadable avant-garde artifacts.</li>
           </ul>
         </section>
 
@@ -98,20 +88,15 @@
         <section class="fav-section">
           <h3 class="fav-heading">&gt; QUOTES /</h3>
 
-          <!-- Copy this block for each quote -->
           <blockquote class="fav-quote">
             <p lang="ta"></p>
-            <footer>— 
-              , <span lang="ta"></span></footer>
+            <footer>— , <span lang="ta"></span></footer>
           </blockquote>
 
           <blockquote class="fav-quote">
             <p></p>
             <footer></footer>
           </blockquote>
-
-          
-          <!-- Add more quotes above this line -->
 
         </section>
 
@@ -123,7 +108,7 @@
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">All Posts</a></li>
+            <li><a href="blog.html">Posts</a></li>
             <li><a href="log.html">Log</a></li>
             <li><a href="favorites.html">Favorites</a></li>
             <li><a href="about.html">About</a></li>
@@ -166,6 +151,14 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', function() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('rp-theme', next);
+    });
   </script>
 
 </body>
