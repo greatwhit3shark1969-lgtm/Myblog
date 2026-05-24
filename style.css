@@ -15,6 +15,29 @@
   --accent:      #00ff41;
   --link:        #66cc66;
   --link-hover:  #00ff41;
+  --topbar-bg:   #060606;
+  --welcome-bg:  #0a0e0a;
+  --quote-bg:    #0a0e0a;
+  --nav-hover-bg:#0f1f0f;
+  --sidebar-heading-text: #0c0c0c;
+}
+
+[data-theme="light"] {
+  --bg:          #f5f5f0;
+  --bg-sidebar:  #eeede8;
+  --border:      #b0cbb0;
+  --border-mid:  #7aaa7a;
+  --text:        #1a2e1a;
+  --text-dim:    #4a6e4a;
+  --text-bright: #0a3d0a;
+  --accent:      #006622;
+  --link:        #2a7a2a;
+  --link-hover:  #006622;
+  --topbar-bg:   #e8e8e2;
+  --welcome-bg:  #eef2ee;
+  --quote-bg:    #eef2ee;
+  --nav-hover-bg:#ddeedd;
+  --sidebar-heading-text: #f5f5f0;
 }
 
 * {
@@ -29,6 +52,7 @@ body {
   font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1rem;
   line-height: 1.75;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .page-wrapper {
@@ -37,17 +61,19 @@ body {
   padding: 0 1.2rem 2rem;
 }
 
+/* ---- TOPBAR ---- */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.72rem;
   color: var(--text-dim);
-  background: #060606;
+  background: var(--topbar-bg);
   border-bottom: 1px solid var(--border);
   padding: 0.3rem 0.5rem;
   letter-spacing: 1px;
   margin-bottom: 1.8rem;
+  transition: background-color 0.2s;
 }
 
 .topbar-left {
@@ -61,6 +87,26 @@ body {
   letter-spacing: 3px;
 }
 
+/* ---- THEME TOGGLE ---- */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---- HEADER ---- */
 header {
   margin-bottom: 1.5rem;
 }
@@ -109,7 +155,7 @@ header {
 
 .main-nav a:hover {
   color: var(--accent);
-  background: #0f1f0f;
+  background: var(--nav-hover-bg);
 }
 
 .h-rule {
@@ -124,6 +170,7 @@ header {
   margin: 0.5rem 0 1.2rem;
 }
 
+/* ---- MAIN LAYOUT ---- */
 .site-main {
   display: grid;
   grid-template-columns: 1fr 200px;
@@ -135,7 +182,8 @@ header {
   border-left: 2px solid var(--border-mid);
   padding: 0.6rem 1rem;
   margin-bottom: 2rem;
-  background: #0a0e0a;
+  background: var(--welcome-bg);
+  transition: background-color 0.2s;
 }
 
 .prompt-line {
@@ -163,6 +211,7 @@ header {
   margin-top: 0.5rem;
 }
 
+/* ---- POST CARDS ---- */
 .post-card {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
@@ -222,16 +271,18 @@ header {
   color: var(--link-hover);
 }
 
+/* ---- SIDEBAR ---- */
 .sidebar-block {
   margin-bottom: 1.8rem;
   border: 1px solid var(--border);
   background: var(--bg-sidebar);
+  transition: background-color 0.2s;
 }
 
 .sidebar-heading {
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--bg);
+  color: var(--sidebar-heading-text);
   background: var(--text-dim);
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -268,6 +319,7 @@ header {
   font-size: 0.8rem;
 }
 
+/* ---- FOOTER ---- */
 footer {
   margin-top: 2rem;
 }
@@ -278,6 +330,7 @@ footer {
   letter-spacing: 2px;
 }
 
+/* ---- FULL POST ---- */
 .full-post {
   margin-bottom: 3rem;
 }
@@ -329,6 +382,7 @@ footer {
   color: var(--accent);
 }
 
+/* ---- BLINK ---- */
 @keyframes blink-anim {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
@@ -338,6 +392,7 @@ footer {
   animation: blink-anim 1s step-end infinite;
 }
 
+/* ---- RESPONSIVE ---- */
 @media (max-width: 600px) {
   .site-main {
     grid-template-columns: 1fr;
@@ -356,8 +411,8 @@ footer {
     padding: 0 2rem 3rem;
   }
 }
-/* ---- ABOUT PAGE ---- */
 
+/* ---- ABOUT PAGE ---- */
 .about-photo-wrap {
   margin-bottom: 1.8rem;
   border: 1px solid var(--border);
@@ -378,7 +433,8 @@ footer {
   border-left: 2px solid var(--border-mid);
   padding: 0.8rem 1rem;
   margin-bottom: 2rem;
-  background: #0a0e0a;
+  background: var(--quote-bg);
+  transition: background-color 0.2s;
 }
 
 .about-quote-text {
@@ -432,8 +488,8 @@ footer {
 .social-link:hover {
   color: var(--link-hover);
 }
-/* ---- TOPIC PAGE ---- */
 
+/* ---- TOPIC PAGE ---- */
 .topic-header {
   display: flex;
   align-items: baseline;
@@ -454,6 +510,7 @@ footer {
   color: var(--text-dim);
   margin-bottom: 1rem;
 }
+
 /* ---- POST TAGS ---- */
 .post-tags {
   display: flex;
@@ -482,7 +539,8 @@ footer {
   border-left: 2px solid var(--border-mid);
   padding: 0.8rem 1rem;
   margin: 1.5rem 0;
-  background: #0a0e0a;
+  background: var(--quote-bg);
+  transition: background-color 0.2s;
 }
 
 .post-quote p {
@@ -496,14 +554,12 @@ footer {
 }
 
 /* ---- TAMIL FONT ---- */
-/* Tamil body text */
 [lang="ta"] {
   font-family: 'Catamaran', sans-serif;
   font-size: 1.05rem;
   line-height: 2.1;
 }
 
-/* Tamil titles — use this class on Tamil post titles */
 .ta-title {
   font-family: 'Arima', serif;
   font-size: clamp(1.8rem, 6vw, 2.8rem);
@@ -511,6 +567,7 @@ footer {
   letter-spacing: 2px;
   line-height: 1.3;
 }
+
 /* ---- SHARED ---- */
 .page-desc {
   font-size: 0.85rem;
@@ -638,7 +695,8 @@ footer {
   border-left: 2px solid var(--border-mid);
   padding: 0.8rem 1rem;
   margin-bottom: 1.2rem;
-  background: #0a0e0a;
+  background: var(--quote-bg);
+  transition: background-color 0.2s;
 }
 
 .fav-quote p {
