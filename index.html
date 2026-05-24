@@ -20,7 +20,7 @@
       </span>
     </div>
 
-    <header>
+  <header>
       <div class="site-identity">
         <h1 class="blog-title">RadioPotti<span class="blink">_</span></h1>
         <p class="blog-tagline">between Lethe and Mnemosyne</p>
@@ -47,7 +47,7 @@
               <span class="post-date">2025-05-16</span>
             </div>
             <h3><a href="post-001.html">ரூபங்கள்</a></h3>
-            <a href="post-001.html" class="read-more">[continue reading →]</a>
+            <a href="post-001.html" class="read-more">[continue reading &rarr;]</a>
           </article>
 
           <article class="post-card">
@@ -56,7 +56,7 @@
               <span class="post-date">2025-05-18</span>
             </div>
             <h3><a href="post-002.html">a Blue Dome</a></h3>
-            <a href="post-002.html" class="read-more">[continue reading →]</a>
+            <a href="post-002.html" class="read-more">[continue reading &rarr;]</a>
           </article>
 
           <article class="post-card">
@@ -64,8 +64,8 @@
               <span class="post-id">#003</span>
               <span class="post-date">2025-05-19</span>
             </div>
-            <h3><a href="post-003.html">A Brick's Dream</a></h3>
-            <a href="post-003.html" class="read-more">[continue reading →]</a>
+            <h3><a href="post-003.html">A Brick&#39;s Dream</a></h3>
+            <a href="post-003.html" class="read-more">[continue reading &rarr;]</a>
           </article>
         </section>
       </div>
@@ -120,7 +120,8 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rp-theme', next);
     });
-
+  </script>
+  <script>
     fetch('blog.html').then(r=>r.text()).then(html=>{
       const doc = new DOMParser().parseFromString(html,'text/html');
       const el = document.getElementById('entry-count');
