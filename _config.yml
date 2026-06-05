@@ -1,0 +1,45 @@
+title: RadioPotti
+description: between Lethe and Mnemosyne
+url: "https://radiopotti.space"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: /:collection/:name
+
+# Collections — your note folders
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name
+  philosophy:
+    output: true
+    permalink: /philosophy/:name
+  medicine:
+    output: true
+    permalink: /medicine/:name
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+      type: "philosophy"
+    values:
+      layout: "note"
+      topic: "Philosophy"
+  - scope:
+      path: ""
+      type: "medicine"
+    values:
+      layout: "note"
+      topic: "Medicine"
+
+# Exclude from build
+exclude:
+  - README.md
+  - wrangler.jsonc
