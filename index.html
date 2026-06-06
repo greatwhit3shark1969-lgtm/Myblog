@@ -116,7 +116,8 @@ layout: null
           <h3 class="sidebar-heading">Site Info</h3>
           <ul class="plain-list">
             <li>Author: Ahamed</li>
-            <li>Updated: 2025</li>
+            <li>Updated: {{ site.time | date: "%Y-%m-%d" }}</li>
+    
             <li>Writing: {{ site.posts | size }}</li>
             <li>Notes: {{ site.philosophy.size | plus: site.medicine.size | plus: site.notes.size }}</li>
           </ul>
