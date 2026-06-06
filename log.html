@@ -8,6 +8,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <style>
+    .lb-entry {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 0 0.8rem;
+    }
+    .lb-entry:first-of-type { border-top: 1px solid var(--border); }
+    .lb-title { font-size: 0.9rem; color: var(--text-bright); font-weight: 700; }
+    .lb-meta { font-size: 0.68rem; color: var(--text-dim); }
+    .lb-rating { color: var(--accent); letter-spacing: 1px; font-size: 0.75rem; }
+    .lb-date { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; }
+    .lb-loading { font-size: 0.82rem; color: var(--text-dim); }
+    #lb-error { font-size: 0.78rem; color: var(--text-dim); display: none; }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -25,23 +42,23 @@
       </div>
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="blog.html">Writing</a>
-        <a href="garden.html">Garden</a>
+        <a href="text.html">Text</a>
         <a href="log.html" class="active">Log</a>
-        <a href="favorites.html">Favorites</a>
         <a href="about.html">About</a>
       </nav>
       <div class="h-rule"></div>
     </header>
+
     <main class="site-main">
       <div class="col-main">
         <div class="topic-header">
           <span class="prompt">&gt;&gt;</span>
           <h2 class="topic-title">LOG</h2>
         </div>
-        <p class="topic-desc">Books and films — what I'm reading, watching, and what I thought of them.</p>
+        <p class="topic-desc">Books and films — what I'm reading, watching, thinking about.</p>
         <div class="h-rule-thin"></div>
 
+        <!-- BOOKS — manual -->
         <section class="log-section">
           <h3 class="log-type-heading">&gt; BOOKS /</h3>
           <div class="log-entry">
@@ -75,37 +92,20 @@
             </div>
             <p class="log-note">On life and resurrection of human..</p>
           </div>
-          <p class="log-add-hint">&gt; <em>Add your books above this line.</em></p>
+          <p class="log-add-hint">&gt; <em>Add books above this line.</em></p>
         </section>
 
         <div class="h-rule-thin"></div>
 
+        <!-- FILMS — auto from Letterboxd -->
         <section class="log-section">
-          <h3 class="log-type-heading">&gt; FILMS /</h3>
-          <div class="log-entry">
-            <div class="log-entry-top">
-              <span class="log-title">Andrei Rublev</span>
-              <span class="log-status status-watching">watching</span>
-            </div>
-            <div class="log-entry-meta">
-              <span class="log-author">Tarkovsky, 1966</span>
-              <span class="log-date">2025-04</span>
-            </div>
-          </div>
-          <div class="log-entry">
-            <div class="log-entry-top">
-              <span class="log-title">தளபதி</span>
-              <span class="log-status status-finished">finished</span>
-            </div>
-            <div class="log-entry-meta">
-              <span class="log-author">Mani Ratnam, 1991</span>
-              <span class="log-rating">★★★★★</span>
-              <span class="log-date">2025-03</span>
-            </div>
-            <p class="log-note" lang="ta">போடா எல்லாம் விட்டுத்தள்ளு</p>
-          </div>
-          <p class="log-add-hint">&gt; <em>Add your films above this line.</em></p>
+          <h3 class="log-type-heading">&gt; FILMS / <span style="font-size:0.62rem; color:var(--text-dim); letter-spacing:0; font-weight:400;">via Letterboxd</span></h3>
+          <div id="lb-loading" class="lb-loading">&gt; loading films...</div>
+          <div id="lb-films"></div>
+          <p id="lb-error">&gt; Could not load Letterboxd feed right now.</p>
+          <p style="margin-top:0.6rem;"><a href="https://letterboxd.com/greatwhit3shark1969/" target="_blank" rel="noopener" class="read-more">[view full diary on Letterboxd &rarr;]</a></p>
         </section>
+
       </div>
 
       <aside class="col-sidebar">
@@ -113,10 +113,8 @@
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Writing</a></li>
-            <li><a href="garden.html">Garden</a></li>
+            <li><a href="text.html">Text</a></li>
             <li><a href="log.html" class="active">Log</a></li>
-            <li><a href="favorites.html">Favorites</a></li>
             <li><a href="about.html">About</a></li>
           </ul>
         </div>
@@ -131,11 +129,13 @@
         </div>
       </aside>
     </main>
+
     <footer>
       <div class="h-rule"></div>
       <p class="footer-copy">SYS://text v1.0 &copy; 2025 &nbsp;&mdash;&nbsp; Ahamed</p>
     </footer>
   </div>
+
   <script>
     function updateClock() {
       const now = new Date();
@@ -149,6 +149,49 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rp-theme', next);
     });
+
+    // Letterboxd RSS via rss2json proxy
+    const LB_USER = 'greatwhit3shark1969';
+    const RSS_URL = `https://letterboxd.com/${LB_USER}/rss/`;
+    const PROXY = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=10`;
+
+    fetch(PROXY)
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('lb-loading').style.display = 'none';
+        if (!data.items || data.items.length === 0) {
+          document.getElementById('lb-error').style.display = 'block';
+          return;
+        }
+        const container = document.getElementById('lb-films');
+        data.items.forEach(item => {
+          // Parse title: "Film Name, Year - ★★★★"
+          const titleRaw = item.title || '';
+          const ratingMatch = titleRaw.match(/[★½]+/);
+          const rating = ratingMatch ? ratingMatch[0] : '';
+          const cleanTitle = titleRaw.replace(/\s*-\s*[★½]*\s*$/, '').trim();
+
+          // Parse date
+          const date = item.pubDate ? item.pubDate.slice(0, 10) : '';
+
+          const div = document.createElement('div');
+          div.className = 'lb-entry';
+          div.innerHTML = `
+            <span class="lb-inner">
+              <a href="${item.link}" target="_blank" rel="noopener" style="text-decoration:none;">
+                <span class="lb-title">${cleanTitle}</span>
+              </a>
+              ${rating ? `<div class="lb-rating">${rating}</div>` : ''}
+            </span>
+            <span class="lb-date">${date}</span>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(() => {
+        document.getElementById('lb-loading').style.display = 'none';
+        document.getElementById('lb-error').style.display = 'block';
+      });
   </script>
 </body>
 </html>
