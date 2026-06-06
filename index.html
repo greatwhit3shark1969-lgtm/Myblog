@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -8,6 +11,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <style>
+    .entry-row {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      align-items: baseline;
+      gap: 0 0.8rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: background 0.1s;
+    }
+    .entry-row:hover { background: var(--nav-hover-bg); }
+    .entry-row:first-of-type { border-top: 1px solid var(--border); }
+    .entry-num { font-size: 0.68rem; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
+    .entry-inner { min-width: 0; }
+    .entry-title { font-size: 0.9rem; color: var(--text-bright); font-weight: 700; }
+    .entry-title[lang="ta"] { font-family: 'Catamaran', sans-serif; }
+    .entry-tag { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 1px; }
+    .entry-date { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; }
+    .entry-stage { font-size: 0.65rem; color: var(--text-dim); white-space: nowrap; }
+    .section-gap { margin-top: 2.2rem; }
+    @media (max-width: 600px) {
+      .entry-row { grid-template-columns: 2.5rem 1fr; }
+      .entry-date, .entry-stage { display: none; }
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -20,14 +49,15 @@
       </span>
     </div>
 
-  <header>
+    <header>
       <div class="site-identity">
         <h1 class="blog-title">RadioPotti<span class="blink">_</span></h1>
         <p class="blog-tagline">between Lethe and Mnemosyne</p>
       </div>
       <nav class="main-nav">
         <a href="index.html" class="active">Home</a>
-        <a href="blog.html">Posts</a>
+        <a href="blog.html">Writing</a>
+        <a href="garden.html">Garden</a>
         <a href="log.html">Log</a>
         <a href="favorites.html">Favorites</a>
         <a href="about.html">About</a>
@@ -37,37 +67,42 @@
 
     <main class="site-main">
       <div class="col-main">
-        <section class="posts-section">
-          <h2 class="section-label">Recent Entries</h2>
+
+        <!-- RECENT WRITING -->
+        <h2 class="section-label">Recent Writing</h2>
+        <div class="h-rule-thin"></div>
+        {% for post in site.posts limit:3 %}
+        <a class="entry-row" href="{{ post.url }}">
+          <span class="entry-num">#{{ post.id | default: forloop.index | prepend: '00' | slice: -3, 3 }}</span>
+          <span class="entry-inner">
+            <span class="entry-title" {% if post.lang %}lang="{{ post.lang }}"{% endif %}>{{ post.title }}</span>
+            {% if post.tags %}<div class="entry-tag">{{ post.tags | join: ', ' }}</div>{% endif %}
+          </span>
+          <span class="entry-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        </a>
+        {% endfor %}
+        <p style="margin-top:0.8rem;"><a href="blog.html" class="read-more">[all writing &rarr;]</a></p>
+
+        <!-- RECENT NOTES -->
+        <div class="section-gap">
+          <h2 class="section-label">Recent Notes</h2>
           <div class="h-rule-thin"></div>
+          {% assign all_notes = site.philosophy | concat: site.medicine | concat: site.notes | sort: 'date' | reverse %}
+          {% for note in all_notes limit:5 %}
+          <a class="entry-row" href="{{ note.url }}">
+            <span class="entry-num" style="color:var(--text-dim); font-size:0.62rem;">
+              {% if note.stage == 'seed' %}🌱{% elsif note.stage == 'growing' %}🌿{% elsif note.stage == 'mature' %}🌳{% else %}·{% endif %}
+            </span>
+            <span class="entry-inner">
+              <span class="entry-title">{{ note.title }}</span>
+              {% if note.topic %}<div class="entry-tag">{{ note.topic | downcase }}</div>{% endif %}
+            </span>
+            <span class="entry-stage">{{ note.date | date: "%Y-%m-%d" }}</span>
+          </a>
+          {% endfor %}
+          <p style="margin-top:0.8rem;"><a href="garden.html" class="read-more">[all notes &rarr;]</a></p>
+        </div>
 
-          <article class="post-card">
-            <div class="post-meta">
-              <span class="post-id">#001</span>
-              <span class="post-date">2025-05-16</span>
-            </div>
-            <h3><a href="post-001.html">ரூபங்கள்</a></h3>
-            <a href="post-001.html" class="read-more">[continue reading &rarr;]</a>
-          </article>
-
-          <article class="post-card">
-            <div class="post-meta">
-              <span class="post-id">#002</span>
-              <span class="post-date">2025-05-18</span>
-            </div>
-            <h3><a href="post-002.html">a Blue Dome</a></h3>
-            <a href="post-002.html" class="read-more">[continue reading &rarr;]</a>
-          </article>
-
-          <article class="post-card">
-            <div class="post-meta">
-              <span class="post-id">#003</span>
-              <span class="post-date">2025-05-19</span>
-            </div>
-            <h3><a href="post-003.html">A Brick&#39;s Dream</a></h3>
-            <a href="post-003.html" class="read-more">[continue reading &rarr;]</a>
-          </article>
-        </section>
       </div>
 
       <aside class="col-sidebar">
@@ -75,18 +110,11 @@
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="blog.html">Posts</a></li>
+            <li><a href="blog.html">Writing</a></li>
+            <li><a href="garden.html">Garden</a></li>
             <li><a href="log.html">Log</a></li>
             <li><a href="favorites.html">Favorites</a></li>
             <li><a href="about.html">About</a></li>
-          </ul>
-        </div>
-        <div class="sidebar-block">
-          <h3 class="sidebar-heading">Topics</h3>
-          <ul>
-            <li><a href="medicine.html">Medicine</a></li>
-            <li><a href="philosophy.html">Philosophy</a></li>
-            <li><a href="observations.html">Observations</a></li>
           </ul>
         </div>
         <div class="sidebar-block">
@@ -94,7 +122,8 @@
           <ul class="plain-list">
             <li>Author: Ahamed</li>
             <li>Updated: 2025</li>
-            <li>Entries: <span id="entry-count">3</span></li>
+            <li>Writing: {{ site.posts | size }}</li>
+            <li>Notes: {{ site.philosophy.size | plus: site.medicine.size | plus: site.notes.size }}</li>
           </ul>
         </div>
       </aside>
@@ -114,19 +143,11 @@
         .map(n=>String(n).padStart(2,'0')).join(':');
     }
     setInterval(updateClock, 1000); updateClock();
-
     document.getElementById('theme-toggle').addEventListener('click', function() {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rp-theme', next);
     });
-  </script>
-  <script>
-    fetch('blog.html').then(r=>r.text()).then(html=>{
-      const doc = new DOMParser().parseFromString(html,'text/html');
-      const el = document.getElementById('entry-count');
-      if(el) el.textContent = doc.querySelectorAll('.post-card').length;
-    }).catch(()=>{});
   </script>
 </body>
 </html>
