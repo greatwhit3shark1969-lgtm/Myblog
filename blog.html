@@ -6,13 +6,12 @@ layout: null
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Posts — RadioPotti</title>
+  <title>Writing — RadioPotti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <style>
-    /* Tighter post list */
     .entry-row {
       display: grid;
       grid-template-columns: 3rem 1fr auto;
@@ -23,49 +22,17 @@ layout: null
       text-decoration: none;
       transition: background 0.1s;
     }
-    .entry-row:hover {
-      background: var(--nav-hover-bg);
-    }
-    .entry-row:first-of-type {
-      border-top: 1px solid var(--border);
-    }
-    .entry-num {
-      font-size: 0.68rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-    .entry-title {
-      font-size: 0.92rem;
-      color: var(--text-bright);
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-    .entry-title[lang="ta"] {
-      font-family: 'Catamaran', sans-serif;
-      font-size: 0.95rem;
-    }
-    .entry-date {
-      font-size: 0.68rem;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
-    .entry-tag {
-      font-size: 0.62rem;
-      color: var(--text-dim);
-      letter-spacing: 1px;
-      margin-top: 0.1rem;
-    }
-    .entry-inner {
-      min-width: 0;
-    }
+    .entry-row:hover { background: var(--nav-hover-bg); }
+    .entry-row:first-of-type { border-top: 1px solid var(--border); }
+    .entry-num { font-size: 0.68rem; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
+    .entry-inner { min-width: 0; }
+    .entry-title { font-size: 0.92rem; color: var(--text-bright); font-weight: 700; }
+    .entry-title[lang="ta"] { font-family: 'Catamaran', sans-serif; font-size: 0.95rem; }
+    .entry-date { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; }
+    .entry-tag { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 1px; }
     @media (max-width: 600px) {
-      .entry-row {
-        grid-template-columns: 2.5rem 1fr;
-      }
-      .entry-date {
-        display: none;
-      }
+      .entry-row { grid-template-columns: 2.5rem 1fr; }
+      .entry-date { display: none; }
     }
   </style>
 </head>
@@ -87,7 +54,8 @@ layout: null
       </div>
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="blog.html" class="active">Posts</a>
+        <a href="blog.html" class="active">Writing</a>
+        <a href="garden.html">Garden</a>
         <a href="log.html">Log</a>
         <a href="favorites.html">Favorites</a>
         <a href="about.html">About</a>
@@ -111,9 +79,7 @@ layout: null
           <span class="entry-num">#{{ post.id | default: forloop.index | prepend: '00' | slice: -3, 3 }}</span>
           <span class="entry-inner">
             <span class="entry-title" {% if post.lang %}lang="{{ post.lang }}"{% endif %}>{{ post.title }}</span>
-            {% if post.tags %}
-            <div class="entry-tag">{{ post.tags | join: ', ' }}</div>
-            {% endif %}
+            {% if post.tags %}<div class="entry-tag">{{ post.tags | join: ', ' }}</div>{% endif %}
           </span>
           <span class="entry-date">{{ post.date | date: "%Y-%m-%d" }}</span>
         </a>
@@ -126,18 +92,11 @@ layout: null
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html" class="active">Posts</a></li>
+            <li><a href="blog.html" class="active">Writing</a></li>
+            <li><a href="garden.html">Garden</a></li>
             <li><a href="log.html">Log</a></li>
             <li><a href="favorites.html">Favorites</a></li>
             <li><a href="about.html">About</a></li>
-          </ul>
-        </div>
-        <div class="sidebar-block">
-          <h3 class="sidebar-heading">Topics</h3>
-          <ul>
-            <li><a href="medicine.html">Medicine</a></li>
-            <li><a href="philosophy.html">Philosophy</a></li>
-            <li><a href="observations.html">Observations</a></li>
           </ul>
         </div>
         <div class="sidebar-block">
@@ -165,7 +124,6 @@ layout: null
         .map(n=>String(n).padStart(2,'0')).join(':');
     }
     setInterval(updateClock, 1000); updateClock();
-
     document.getElementById('theme-toggle').addEventListener('click', function() {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
