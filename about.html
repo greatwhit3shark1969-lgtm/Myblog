@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — RadioPotti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&family=Permanent+Marker&family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&family=Permanent+Marker&family=Special+Elite&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <style>
@@ -38,127 +38,262 @@
     }
     .collapsible-toggle.open .arrow { transform: rotate(90deg); }
 
-    .collapsible-body {
-      display: none;
-      padding: 0;
-    }
+    .collapsible-body { display: none; }
     .collapsible-body.open { display: block; }
 
-    /* ---- BASQUIAT SECTION ---- */
-    .basquiat-wrap {
+
+    /* ══════════════════════════════════════════
+       BASQUIAT BOARD — fixed palette, no theme
+       Colours pulled from the painting directly
+       ══════════════════════════════════════════ */
+
+    .bq-board {
+      --bq-bg:      #0d0d0d;
+      --bq-red:     #c8230a;
+      --bq-orange:  #e07010;
+      --bq-yellow:  #f0c040;
+      --bq-blue:    #2060c8;
+      --bq-blue2:   #4090d8;
+      --bq-white:   #e8e0d0;
+      --bq-bone:    #c8b898;
+      --bq-ink:     #111111;
+      --bq-scratch: #7a3a20;
+
       position: relative;
-      margin-top: 1.2rem;
-      padding: 1.4rem 1.2rem 1.6rem;
-      background: #0e0a00;
-      border: 2px solid #c8a900;
-      /* rough border effect */
-      box-shadow:
-        3px 3px 0 #c8a900,
-        -1px -1px 0 #8b1a00,
-        inset 0 0 40px rgba(0,0,0,0.5);
-      transform: rotate(-0.4deg);
-    }
-    [data-theme="light"] .basquiat-wrap {
-      background: #fdf6e3;
-      border-color: #b8860b;
-      box-shadow: 3px 3px 0 #b8860b, -1px -1px 0 #8b1a00, inset 0 0 40px rgba(0,0,0,0.04);
+      margin-top: 1rem;
+      padding: 0;
+      background: var(--bq-bg);
+      border: 3px solid var(--bq-ink);
+      outline: 2px solid var(--bq-yellow);
+      outline-offset: 4px;
+      overflow: hidden;
     }
 
-    /* Crown watermark */
-    .basquiat-wrap::before {
-      content: '♛';
+    /* painted top bar */
+    .bq-board::before {
+      content: '';
+      display: block;
+      height: 10px;
+      background: var(--bq-red);
+      border-bottom: 3px solid var(--bq-ink);
+    }
+
+    /* scratch marks bottom right */
+    .bq-board::after {
+      content: '× ×';
       position: absolute;
-      top: 0.5rem;
+      bottom: 0.6rem;
       right: 0.8rem;
-      font-size: 1.1rem;
-      color: #c8a900;
-      opacity: 0.5;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 0.7rem;
+      color: var(--bq-scratch);
+      letter-spacing: 6px;
+      opacity: 0.7;
     }
 
-    .basquiat-section-label {
+    /* inner canvas with faint horizontal texture */
+    .bq-inner {
+      padding: 1.4rem 1.4rem 2rem;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 28px,
+          rgba(255,255,255,0.025) 28px,
+          rgba(255,255,255,0.025) 29px
+        );
+    }
+
+    /* crown + title header */
+    .bq-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1.4rem;
+    }
+    .bq-crown {
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.75rem;
-      color: #c8a900;
+      font-size: 2.4rem;
+      color: var(--bq-yellow);
+      line-height: 1;
+      text-shadow: 2px 2px 0 var(--bq-orange), 4px 4px 0 var(--bq-ink);
+      transform: rotate(-3deg);
+      display: inline-block;
+    }
+    .bq-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--bq-white);
+      letter-spacing: 5px;
+      line-height: 1;
+      text-shadow: 3px 3px 0 var(--bq-red);
+      border-bottom: 4px solid var(--bq-red);
+      padding-bottom: 2px;
+    }
+    .bq-subtitle {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.65rem;
+      color: var(--bq-bone);
       letter-spacing: 3px;
       text-transform: uppercase;
-      margin: 1.2rem 0 0.4rem;
-      /* underline scrawl */
-      border-bottom: 2px solid #8b1a00;
-      display: inline-block;
-      padding-bottom: 1px;
+      margin-top: 0.2rem;
+      opacity: 0.7;
     }
-    .basquiat-section-label:first-child { margin-top: 0; }
 
-    .basquiat-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.3rem 0 0.8rem;
-    }
-    .basquiat-list li {
-      font-family: 'Special Elite', cursive;
-      font-size: 0.82rem;
-      color: #d4c49a;
-      padding: 0.25rem 0;
-      border-bottom: 1px dashed rgba(200,169,0,0.15);
-      line-height: 1.55;
+    /* section blocks */
+    .bq-section {
+      margin-bottom: 1.2rem;
       position: relative;
     }
-    [data-theme="light"] .basquiat-list li { color: #3a2a00; }
-    .basquiat-list li:last-child { border-bottom: none; }
-    .basquiat-list a {
-      color: #c8a900;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s;
+    .bq-section-label {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      padding: 0.1rem 0.6rem 0.1rem 0;
+      margin-bottom: 0.5rem;
     }
-    .basquiat-list a:hover { border-bottom-color: #c8a900; }
 
-    /* ALLCAPS annotation style */
-    .basquiat-note {
+    /* colour-coded by section */
+    .bq-section--music .bq-section-label  { color: var(--bq-yellow); border-bottom: 3px solid var(--bq-yellow); }
+    .bq-section--books .bq-section-label  { color: var(--bq-blue2);  border-bottom: 3px solid var(--bq-blue);  }
+    .bq-section--links .bq-section-label  { color: var(--bq-red);    border-bottom: 3px solid var(--bq-red);   }
+    .bq-section--quotes .bq-section-label { color: var(--bq-white);  border-bottom: 3px solid var(--bq-bone);  }
+
+    /* item rows — 3-col grid */
+    .bq-items { display: flex; flex-direction: column; gap: 0; }
+
+    .bq-item {
+      display: grid;
+      grid-template-columns: 1.2rem 1fr auto;
+      align-items: baseline;
+      gap: 0.4rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bq-item:last-child { border-bottom: none; }
+
+    /* bullet glyph */
+    .bq-bullet {
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.62rem;
-      color: #8b1a00;
-      letter-spacing: 1px;
-      margin-left: 0.4rem;
-      vertical-align: middle;
+      font-size: 0.9rem;
+      color: var(--bq-red);
+      line-height: 1;
+      text-align: center;
     }
+    .bq-section--books .bq-bullet  { color: var(--bq-blue2); }
+    .bq-section--links .bq-bullet  { color: var(--bq-yellow); }
+    .bq-section--quotes .bq-bullet { color: var(--bq-bone); }
 
-    .basquiat-divider {
-      border: none;
-      border-top: 1px dashed rgba(200,169,0,0.2);
-      margin: 0.6rem 0;
-    }
-
-    /* quotes feel like scrawled text */
-    .basquiat-quote {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 0.88rem;
-      color: #d4c49a;
-      line-height: 1.8;
-      margin: 0.4rem 0 0.2rem;
-      padding-left: 0.8rem;
-      border-left: 3px solid #8b1a00;
-    }
-    [data-theme="light"] .basquiat-quote { color: #3a2a00; }
-    .basquiat-quote-src {
+    /* item text */
+    .bq-item-text {
       font-family: 'Special Elite', cursive;
-      font-size: 0.68rem;
-      color: #c8a900;
+      font-size: 0.88rem;
+      color: var(--bq-white);
+      line-height: 1.5;
+    }
+    .bq-item-text a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(255,255,255,0.3);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .bq-item-text a:hover { color: var(--bq-yellow); border-bottom-color: var(--bq-yellow); }
+
+    /* annotation tag */
+    .bq-tag {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 0.58rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      white-space: nowrap;
+      align-self: center;
+    }
+    .bq-section--music .bq-tag  { color: var(--bq-orange); border: 1px solid var(--bq-orange); }
+    .bq-section--books .bq-tag  { color: var(--bq-blue2);  border: 1px solid var(--bq-blue2); }
+    .bq-section--links .bq-tag  { color: var(--bq-yellow); border: 1px solid var(--bq-yellow); }
+    .bq-section--quotes .bq-tag { color: var(--bq-bone);   border: 1px solid var(--bq-bone); }
+
+    /* accent bars (painted strokes on side) */
+    .bq-accent-bar {
+      position: absolute;
+      right: -3px;
+      top: 0; bottom: 0;
+      width: 6px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .bq-section--music .bq-accent-bar  { background: var(--bq-orange); }
+    .bq-section--books .bq-accent-bar  { background: var(--bq-blue); }
+    .bq-section--links .bq-accent-bar  { background: var(--bq-red); }
+    .bq-section--quotes .bq-accent-bar { background: var(--bq-bone); opacity: 0.3; }
+
+    /* divider */
+    .bq-divider {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, var(--bq-red) 0%, transparent 100%);
+      margin: 0.8rem 0 1rem;
+      opacity: 0.4;
+    }
+
+    /* quote block */
+    .bq-quote-block {
+      padding: 0.7rem 0.8rem;
+      border-left: 5px solid var(--bq-red);
+      background: rgba(200,35,10,0.07);
+      position: relative;
+    }
+    .bq-quote-block::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem; left: 0.6rem;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 2.5rem;
+      color: var(--bq-red);
+      opacity: 0.4;
+      line-height: 1;
+    }
+    .bq-quote-text {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 0.9rem;
+      color: var(--bq-white);
+      line-height: 1.9;
+      padding-left: 0.4rem;
+    }
+    .bq-quote-src {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.65rem;
+      color: var(--bq-yellow);
+      letter-spacing: 2px;
+      text-transform: uppercase;
       text-align: right;
       display: block;
-      margin-top: 0.2rem;
+      margin-top: 0.4rem;
     }
 
-    /* scratch/cross decoration */
-    .basquiat-wrap::after {
-      content: '× × ×';
-      position: absolute;
-      bottom: 0.4rem;
-      left: 0.8rem;
-      font-size: 0.6rem;
-      color: #8b1a00;
-      letter-spacing: 3px;
+    /* footer line */
+    .bq-footer-line {
+      margin-top: 1.2rem;
+      padding-top: 0.6rem;
+      border-top: 2px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .bq-footer-cross {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.2rem;
+      color: var(--bq-red);
       opacity: 0.6;
+    }
+    .bq-footer-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.7rem;
+      color: var(--bq-bone);
+      letter-spacing: 4px;
+      opacity: 0.4;
     }
   </style>
 </head>
@@ -223,45 +358,119 @@
         </button>
 
         <div class="collapsible-body" id="fav-body">
-          <div class="basquiat-wrap">
+          <div class="bq-board">
+            <div class="bq-inner">
 
-            <span class="basquiat-section-label">MUSIC</span>
-            <ul class="basquiat-list">
-              <li>
-                <a href="https://music.youtube.com/playlist?list=OLAK5uy_mYrVbKFmiX6uqYBlryzoaj4hYS_vmVLvg&si=uPev1CxGsViiZ6rP" target="_blank" rel="noopener">Ilaiyaraaja — Hey Ram (2000)</a>
-                <span class="basquiat-note">PLAYS LIKE MEMORY</span>
-              </li>
-              <li>
-                <a href="https://youtube.com/playlist?list=OLAK5uy_krhGAQ-2ULbZ6vPEyrGxkNN_prUX4zimk&si=kO9rImheP-G_MnrR" target="_blank" rel="noopener">A.R. Rahman — Bombay (1995) OST</a>
-              </li>
-            </ul>
+              <!-- Header -->
+              <div class="bq-header">
+                <span class="bq-crown">♛</span>
+                <div>
+                  <div class="bq-title">FAVOURITES</div>
+                  <div class="bq-subtitle">curated noise · selected signals</div>
+                </div>
+              </div>
 
-            <hr class="basquiat-divider">
+              <!-- MUSIC -->
+              <div class="bq-section bq-section--music">
+                <div class="bq-accent-bar"></div>
+                <div class="bq-section-label">MUSIC</div>
+                <div class="bq-items">
+                  <div class="bq-item">
+                    <span class="bq-bullet">×</span>
+                    <span class="bq-item-text">
+                      <a href="https://music.youtube.com/playlist?list=OLAK5uy_mYrVbKFmiX6uqYBlryzoaj4hYS_vmVLvg&si=uPev1CxGsViiZ6rP" target="_blank" rel="noopener">
+                        Ilaiyaraaja — Hey Ram (2000)
+                      </a>
+                    </span>
+                    <span class="bq-tag">PLAYS LIKE MEMORY</span>
+                  </div>
+                  <div class="bq-item">
+                    <span class="bq-bullet">×</span>
+                    <span class="bq-item-text">
+                      <a href="https://youtube.com/playlist?list=OLAK5uy_krhGAQ-2ULbZ6vPEyrGxkNN_prUX4zimk&si=kO9rImheP-G_MnrR" target="_blank" rel="noopener">
+                        A.R. Rahman — Bombay (1995) OST
+                      </a>
+                    </span>
+                    <span class="bq-tag">PURE FEELING</span>
+                  </div>
+                </div>
+              </div>
 
-            <span class="basquiat-section-label">BOOKS</span>
-            <ul class="basquiat-list">
-              <li lang="ta">ஒரு மனிதன் ஒரு வீடு ஒரு உலகம். <span class="basquiat-note" style="font-family:'Special Elite',cursive;">— ஜெயகாந்தன்</span></li>
-              <li>The Murder Of Roger Ackroyd <span class="basquiat-note">— CHRISTIE</span></li>
-              <li>Siddhartha <span class="basquiat-note">— HESSE</span></li>
-            </ul>
+              <hr class="bq-divider">
 
-            <hr class="basquiat-divider">
+              <!-- BOOKS -->
+              <div class="bq-section bq-section--books">
+                <div class="bq-accent-bar"></div>
+                <div class="bq-section-label">BOOKS</div>
+                <div class="bq-items">
+                  <div class="bq-item">
+                    <span class="bq-bullet">—</span>
+                    <span class="bq-item-text" lang="ta">ஒரு மனிதன் ஒரு வீடு ஒரு உலகம்</span>
+                    <span class="bq-tag">ஜெயகாந்தன்</span>
+                  </div>
+                  <div class="bq-item">
+                    <span class="bq-bullet">—</span>
+                    <span class="bq-item-text">The Murder Of Roger Ackroyd</span>
+                    <span class="bq-tag">CHRISTIE</span>
+                  </div>
+                  <div class="bq-item">
+                    <span class="bq-bullet">—</span>
+                    <span class="bq-item-text">Siddhartha</span>
+                    <span class="bq-tag">HESSE</span>
+                  </div>
+                </div>
+              </div>
 
-            <span class="basquiat-section-label">LINKS</span>
-            <ul class="basquiat-list">
-              <li><a href="https://www.are.na/share/WhGjKtS" target="_blank" rel="noopener">Are.na</a> <span class="basquiat-note">QUIETER INTERNET</span></li>
-              <li><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a></li>
-              <li><a href="https://aeon.co/" target="_blank" rel="noopener">Aeon</a> <span class="basquiat-note">SCIENCE + PHILOSOPHY</span></li>
-              <li><a href="https://www.ubu.com/index.html" target="_blank" rel="noopener">UbuWeb</a> <span class="basquiat-note">SHADOW LIBRARY</span></li>
-            </ul>
+              <hr class="bq-divider">
 
-            <hr class="basquiat-divider">
+              <!-- LINKS -->
+              <div class="bq-section bq-section--links">
+                <div class="bq-accent-bar"></div>
+                <div class="bq-section-label">LINKS</div>
+                <div class="bq-items">
+                  <div class="bq-item">
+                    <span class="bq-bullet">↗</span>
+                    <span class="bq-item-text"><a href="https://www.are.na/share/WhGjKtS" target="_blank" rel="noopener">Are.na</a></span>
+                    <span class="bq-tag">QUIETER INTERNET</span>
+                  </div>
+                  <div class="bq-item">
+                    <span class="bq-bullet">↗</span>
+                    <span class="bq-item-text"><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a></span>
+                    <span class="bq-tag">MIND + LIFE</span>
+                  </div>
+                  <div class="bq-item">
+                    <span class="bq-bullet">↗</span>
+                    <span class="bq-item-text"><a href="https://aeon.co/" target="_blank" rel="noopener">Aeon</a></span>
+                    <span class="bq-tag">SCIENCE + PHILOSOPHY</span>
+                  </div>
+                  <div class="bq-item">
+                    <span class="bq-bullet">↗</span>
+                    <span class="bq-item-text"><a href="https://www.ubu.com/index.html" target="_blank" rel="noopener">UbuWeb</a></span>
+                    <span class="bq-tag">SHADOW LIBRARY</span>
+                  </div>
+                </div>
+              </div>
 
-            <span class="basquiat-section-label">QUOTES</span>
-            <p class="basquiat-quote">&gt; Add your quotes here.</p>
+              <hr class="bq-divider">
 
-          </div>
-        </div>
+              <!-- QUOTES -->
+              <div class="bq-section bq-section--quotes">
+                <div class="bq-section-label">QUOTES</div>
+                <div class="bq-quote-block">
+                  <p class="bq-quote-text">Add your quotes here.</p>
+                  <span class="bq-quote-src">— source</span>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="bq-footer-line">
+                <span class="bq-footer-cross">✝ ✝ ✝</span>
+                <span class="bq-footer-text">EST. 2025 · RADIOPOTTI</span>
+              </div>
+
+            </div><!-- /bq-inner -->
+          </div><!-- /bq-board -->
+        </div><!-- /collapsible-body -->
 
         <div class="h-rule-thin" style="margin-top:2rem;"></div>
         <a href="index.html" class="back-link">&larr; back to home</a>
@@ -294,13 +503,15 @@
         .map(n=>String(n).padStart(2,'0')).join(':');
     }
     setInterval(updateClock, 1000); updateClock();
+
     document.getElementById('theme-toggle').addEventListener('click', function() {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rp-theme', next);
     });
+
     function toggleFav() {
-      const btn = document.getElementById('fav-toggle');
+      const btn  = document.getElementById('fav-toggle');
       const body = document.getElementById('fav-body');
       btn.classList.toggle('open');
       body.classList.toggle('open');
