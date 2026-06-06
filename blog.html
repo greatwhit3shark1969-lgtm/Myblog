@@ -6,18 +6,47 @@ layout: null
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writing — RadioPotti</title>
+  <title>Text — RadioPotti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <style>
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      width: fit-content;
+      margin-bottom: 1.4rem;
+    }
+    .tab-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      padding: 0.25rem 1.1rem;
+      border: none;
+      border-right: 1px solid var(--border);
+      background: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: color 0.1s, background 0.1s;
+    }
+    .tab-btn:last-child { border-right: none; }
+    .tab-btn:hover { color: var(--accent); background: var(--nav-hover-bg); }
+    .tab-btn.active {
+      color: var(--accent);
+      background: var(--nav-active-bg);
+      border-bottom: 2px solid var(--accent);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
     .entry-row {
       display: grid;
       grid-template-columns: 3rem 1fr auto;
       align-items: baseline;
       gap: 0 0.8rem;
-      padding: 0.55rem 0;
+      padding: 0.5rem 0;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
       transition: background 0.1s;
@@ -25,20 +54,35 @@ layout: null
     .entry-row:hover { background: var(--nav-hover-bg); }
     .entry-row:first-of-type { border-top: 1px solid var(--border); }
     .entry-num { font-size: 0.68rem; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
+    .entry-stage-icon { font-size: 0.75rem; white-space: nowrap; }
     .entry-inner { min-width: 0; }
-    .entry-title { font-size: 0.92rem; color: var(--text-bright); font-weight: 700; }
-    .entry-title[lang="ta"] { font-family: 'Catamaran', sans-serif; font-size: 0.95rem; }
+    .entry-title { font-size: 0.9rem; color: var(--text-bright); font-weight: 700; display: block; }
+    .entry-title[lang="ta"] { font-family: 'Catamaran', sans-serif; }
+    .entry-sub { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 1px; }
     .entry-date { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; }
-    .entry-tag { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 1px; }
+
+    .filter-bar { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
+    .filter-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      padding: 0.12rem 0.5rem;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .filter-btn:hover, .filter-btn.active { color: var(--accent); border-color: var(--accent); }
+
     @media (max-width: 600px) {
-      .entry-row { grid-template-columns: 2.5rem 1fr; }
+      .entry-row { grid-template-columns: 2.2rem 1fr; }
       .entry-date { display: none; }
     }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
-
     <div class="topbar">
       <span class="topbar-left">SYS://<span lang="ta">பிரதி</span>&nbsp;v1.0 &nbsp;|&nbsp; EST. 2025</span>
       <span class="topbar-right">
@@ -46,7 +90,6 @@ layout: null
         <span class="sys-time" id="clock">00:00:00</span>
       </span>
     </div>
-
     <header>
       <div class="site-identity">
         <h1 class="blog-title">RadioPotti<span class="blink">_</span></h1>
@@ -54,10 +97,8 @@ layout: null
       </div>
       <nav class="main-nav">
         <a href="index.html">Home</a>
-        <a href="blog.html" class="active">Writing</a>
-        <a href="garden.html">Garden</a>
+        <a href="text.html" class="active">Text</a>
         <a href="log.html">Log</a>
-        <a href="favorites.html">Favorites</a>
         <a href="about.html">About</a>
       </nav>
       <div class="h-rule"></div>
@@ -68,22 +109,66 @@ layout: null
 
         <div class="topic-header">
           <span class="prompt">&gt;&gt;</span>
-          <h2 class="topic-title">WRITING</h2>
+          <h2 class="topic-title">TEXT</h2>
         </div>
-        <p class="topic-desc">Sealed pieces — essays, observations, fragments. Finished enough to publish.</p>
+        <p class="topic-desc">Writing and notes — sealed pieces and living ideas.</p>
         <div class="h-rule-thin"></div>
 
-        {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
-        {% for post in sorted_posts %}
-        <a class="entry-row" href="{{ post.url }}">
-          <span class="entry-num">#{{ post.id | default: forloop.index | prepend: '00' | slice: -3, 3 }}</span>
-          <span class="entry-inner">
-            <span class="entry-title" {% if post.lang %}lang="{{ post.lang }}"{% endif %}>{{ post.title }}</span>
-            {% if post.tags %}<div class="entry-tag">{{ post.tags | join: ', ' }}</div>{% endif %}
-          </span>
-          <span class="entry-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-        </a>
-        {% endfor %}
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab('writing', this)">Writing</button>
+          <button class="tab-btn" onclick="switchTab('notes', this)">Notes</button>
+        </div>
+
+        <!-- WRITING TAB -->
+        <div class="tab-panel active" id="tab-writing">
+          <p class="page-desc" style="margin-bottom:0.8rem;">Sealed pieces — finished enough to publish.</p>
+          {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+          {% for post in sorted_posts %}
+          <a class="entry-row" href="{{ post.url }}">
+            <span class="entry-num">#{{ post.id | default: forloop.index | prepend: '00' | slice: -3, 3 }}</span>
+            <span class="entry-inner">
+              <span class="entry-title" {% if post.lang %}lang="{{ post.lang }}"{% endif %}>{{ post.title }}</span>
+              {% if post.tags %}<span class="entry-sub">{{ post.tags | join: ', ' }}</span>{% endif %}
+            </span>
+            <span class="entry-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          </a>
+          {% endfor %}
+          {% if site.posts.size == 0 %}
+          <p class="no-posts">&gt; No writing yet.</p>
+          {% endif %}
+        </div>
+
+        <!-- NOTES TAB -->
+        <div class="tab-panel" id="tab-notes">
+          <div class="filter-bar">
+            <span style="font-size:0.68rem; color:var(--text-dim); letter-spacing:1px;">STAGE:</span>
+            <button class="filter-btn active" onclick="filterNotes('all', this)">all</button>
+            <button class="filter-btn" onclick="filterNotes('seed', this)">🌱 seed</button>
+            <button class="filter-btn" onclick="filterNotes('growing', this)">🌿 growing</button>
+            <button class="filter-btn" onclick="filterNotes('mature', this)">🌳 mature</button>
+          </div>
+
+          {% assign philosophy_notes = site.philosophy | sort: 'date' | reverse %}
+          {% assign medicine_notes = site.medicine | sort: 'date' | reverse %}
+          {% assign general_notes = site.notes | sort: 'date' | reverse %}
+          {% assign all_notes = philosophy_notes | concat: medicine_notes | concat: general_notes %}
+
+          {% for note in all_notes %}
+          <a class="entry-row" href="{{ note.url }}" data-stage="{{ note.stage | default: 'seed' }}">
+            <span class="entry-stage-icon">{% if note.stage == 'seed' %}🌱{% elsif note.stage == 'growing' %}🌿{% elsif note.stage == 'mature' %}🌳{% else %}🌱{% endif %}</span>
+            <span class="entry-inner">
+              <span class="entry-title">{{ note.title }}</span>
+              <span class="entry-sub">{% if note.topic %}{{ note.topic | downcase }}{% endif %}{% if note.subtitle %} — {{ note.subtitle }}{% endif %}</span>
+            </span>
+            <span class="entry-date">{{ note.date | date: "%Y-%m-%d" }}</span>
+          </a>
+          {% endfor %}
+
+          {% assign total = site.philosophy.size | plus: site.medicine.size | plus: site.notes.size %}
+          {% if total == 0 %}
+          <p class="no-posts">&gt; No notes yet. Write in Obsidian, push to Garden.</p>
+          {% endif %}
+        </div>
 
       </div>
 
@@ -92,19 +177,24 @@ layout: null
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html" class="active">Writing</a></li>
-            <li><a href="garden.html">Garden</a></li>
+            <li><a href="text.html" class="active">Text</a></li>
             <li><a href="log.html">Log</a></li>
-            <li><a href="favorites.html">Favorites</a></li>
             <li><a href="about.html">About</a></li>
           </ul>
         </div>
         <div class="sidebar-block">
-          <h3 class="sidebar-heading">Site Info</h3>
+          <h3 class="sidebar-heading">Stage Key</h3>
           <ul class="plain-list">
-            <li>Author: Ahamed</li>
-            <li>Updated: 2025</li>
-            <li>Entries: {{ site.posts | size }}</li>
+            <li>🌱 seed</li>
+            <li>🌿 growing</li>
+            <li>🌳 mature</li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h3 class="sidebar-heading">Counts</h3>
+          <ul class="plain-list">
+            <li>Writing: {{ site.posts | size }}</li>
+            <li>Notes: {{ site.philosophy.size | plus: site.medicine.size | plus: site.notes.size }}</li>
           </ul>
         </div>
       </aside>
@@ -129,6 +219,26 @@ layout: null
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rp-theme', next);
     });
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+      localStorage.setItem('rp-text-tab', tab);
+    }
+    // Restore last tab
+    const saved = localStorage.getItem('rp-text-tab');
+    if (saved) {
+      const btn = [...document.querySelectorAll('.tab-btn')].find(b => b.textContent.toLowerCase().includes(saved));
+      if (btn) switchTab(saved, btn);
+    }
+    function filterNotes(stage, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#tab-notes .entry-row[data-stage]').forEach(row => {
+        row.style.display = (stage === 'all' || row.dataset.stage === stage) ? '' : 'none';
+      });
+    }
   </script>
 </body>
 </html>
