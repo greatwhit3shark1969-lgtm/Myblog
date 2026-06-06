@@ -43,3 +43,5 @@ defaults:
 exclude:
   - README.md
   - wrangler.jsonc
+
+last_modified_at: true
