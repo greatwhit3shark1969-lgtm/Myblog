@@ -9,6 +9,80 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <style>
+    .post-stamp {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      color: var(--bg);
+      background: var(--text-dim);
+      padding: 0.1rem 0.5rem;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+    .post-header-block { margin-bottom: 1.2rem; }
+    .post-number {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 0.2rem;
+    }
+    .post-title-main {
+      font-family: 'VT323', monospace;
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      color: var(--text-bright);
+      letter-spacing: 3px;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .post-title-main.ta-title { font-family: 'Arima', serif; }
+    .post-dateline {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .post-body {
+      border-left: 2px solid var(--border);
+      padding-left: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .post-body p {
+      font-size: 0.95rem;
+      line-height: 1.95;
+      margin-bottom: 1.4rem;
+      color: var(--text);
+    }
+    .post-body blockquote {
+      border-left: 2px solid var(--border-mid);
+      padding: 0.6rem 1rem;
+      margin: 1.2rem 0;
+      background: var(--quote-bg);
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .post-body blockquote p { margin-bottom: 0; font-size: 0.92rem; }
+    .post-footer-rule {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 2rem 0 1rem;
+    }
+    .post-tags-line {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    .post-tags-line a {
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
+      margin-right: 0.3rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .post-tags-line a:hover { color: var(--accent); border-color: var(--accent); }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -28,7 +102,7 @@
       </div>
       <nav class="main-nav">
         <a href="/index.html">Home</a>
-        <a href="/text.html">Text</a>
+        <a href="/text.html" class="active">Text</a>
         <a href="/log.html">Log</a>
         <a href="/about.html">About</a>
       </nav>
@@ -36,67 +110,42 @@
     </header>
 
     <main class="site-main">
-      <div class="col-main">
-        <article class="full-post">
+      <article class="col-main">
 
-          <div class="post-meta" style="margin-bottom:0.5rem;">
-            {% if page.topic %}
-            <span class="post-id">{{ page.topic | upcase }}</span>
-            {% endif %}
-            {% if page.date %}
-            <span class="post-date">{{ page.date | date: "%Y-%m-%d" }}</span>
-            {% endif %}
+        <div class="post-header-block">
+          <span class="post-stamp">writing</span>
+          <div class="post-number">
+            {% if page.id %}#{{ page.id }}{% endif %}
           </div>
-
-          <h1 class="post-title">{{ page.title }}</h1>
-
-          {% if page.subtitle %}
-          <p class="post-subtitle">{{ page.subtitle }}</p>
-          {% endif %}
-
-          {% if page.stage %}
-          <p style="font-size:0.75rem; color:var(--text-dim); margin-bottom:0.5rem; letter-spacing:1px;">
-            STATUS &rarr;
-            {% if page.stage == "seed" %}
-            <span style="color:#aaaaff;">[seed 🌱]</span>
-            {% elsif page.stage == "growing" %}
-            <span style="color:#ffcc44;">[growing 🌿]</span>
-            {% elsif page.stage == "mature" %}
-            <span style="color:var(--accent);">[mature 🌳]</span>
-            {% endif %}
-          </p>
-          {% endif %}
-
-          <div class="h-rule-thin"></div>
-
-          <div class="post-body">
-            {{ content }}
-          </div>
-
-          {% if page.related %}
-          <div style="margin-top:2.5rem; border-top:1px solid var(--border); padding-top:1rem;">
-            <p style="font-size:0.75rem; color:var(--text-dim); letter-spacing:2px; margin-bottom:0.6rem;">RELATED NOTES</p>
-            <ul style="list-style:none; padding:0;">
-              {% for item in page.related %}
-              <li style="font-size:0.85rem; padding:0.2rem 0; border-bottom:1px solid var(--border);">
-                <a href="{{ item.url }}" style="color:var(--link); text-decoration:none;">→ {{ item.title }}</a>
-              </li>
-              {% endfor %}
-            </ul>
+          <h1 class="post-title-main {% if page.lang == 'ta' %}ta-title{% endif %}"
+              {% if page.lang %}lang="{{ page.lang }}"{% endif %}>
+            {{ page.title }}
+          </h1>
+          <div class="post-dateline">{{ page.date | date: "%Y-%m-%d" }}</div>
+          {% if page.tags %}
+          <div class="post-tags-line">
+            {% for tag in page.tags %}
+            <a href="/text.html">{{ tag }}</a>
+            {% endfor %}
           </div>
           {% endif %}
+        </div>
 
-          <a href="/text.html" class="back-link" style="margin-top:2rem; display:inline-block;">[&larr; back to all text]</a>
+        <div class="post-body">
+          {{ content }}
+        </div>
 
-        </article>
-      </div>
+        <div class="post-footer-rule"></div>
+        <a href="/text.html" class="back-link">[&larr; back to all text]</a>
+
+      </article>
 
       <aside class="col-sidebar">
         <div class="sidebar-block">
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="/index.html">Home</a></li>
-            <li><a href="/text.html">Text</a></li>
+            <li><a href="/text.html" class="active">Text</a></li>
             <li><a href="/log.html">Log</a></li>
             <li><a href="/about.html">About</a></li>
           </ul>
