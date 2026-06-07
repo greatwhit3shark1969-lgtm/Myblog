@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log — RadioPotti</title>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -20,11 +20,11 @@
     }
     .lb-entry:first-of-type { border-top: 1px solid var(--border); }
     .lb-title { font-size: 0.9rem; color: var(--text-bright); font-weight: 700; }
-    .lb-meta { font-size: 0.68rem; color: var(--text-dim); }
     .lb-rating { color: var(--accent); letter-spacing: 1px; font-size: 0.75rem; }
     .lb-date { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; }
+    .lb-note { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
     .lb-loading { font-size: 0.82rem; color: var(--text-dim); }
-    #lb-error { font-size: 0.78rem; color: var(--text-dim); display: none; }
+    .lb-error { font-size: 0.78rem; color: var(--text-dim); display: none; }
   </style>
 </head>
 <body>
@@ -59,41 +59,14 @@
         <p class="topic-desc">Books and films — what I'm reading, watching, thinking about.</p>
         <div class="h-rule-thin"></div>
 
-        <!-- BOOKS — manual -->
+        <!-- BOOKS — auto from Google Sheets -->
         <section class="log-section">
-          <h3 class="log-type-heading">&gt; BOOKS /</h3>
-          <div class="log-entry">
-            <div class="log-entry-top">
-              <span class="log-title">மீஸான் கற்கள்</span>
-              <span class="log-status status-reading">reading</span>
-            </div>
-            <div class="log-entry-meta">
-              <span class="log-author">புனத்தில் குஞ்ஞப்துல்லாஹ்</span>
-              <span class="log-date">2025-05</span>
-            </div>
-          </div>
-          <div class="log-entry">
-            <div class="log-entry-top">
-              <span class="log-title">மருபூமி</span>
-              <span class="log-status status-reading">reading</span>
-            </div>
-            <div class="log-entry-meta">
-              <span class="log-author">அஜிதன்</span>
-              <span class="log-date">2025-05</span>
-            </div>
-          </div>
-          <div class="log-entry">
-            <div class="log-entry-top">
-              <span class="log-title">Brothers Karamazov</span>
-              <span class="log-status status-reading">reading</span>
-            </div>
-            <div class="log-entry-meta">
-              <span class="log-author">Fyodor Dostoyevsky</span>
-              <span class="log-date">2025-05</span>
-            </div>
-            <p class="log-note">On life and resurrection of human..</p>
-          </div>
-          <p class="log-add-hint">&gt; <em>Add books above this line.</em></p>
+          <h3 class="log-type-heading">&gt; BOOKS / <span style="font-size:0.62rem; color:var(--text-dim); letter-spacing:0; font-weight:400;">via Google Sheets</span></h3>
+          <div id="gs-loading" class="lb-loading">&gt; loading books...</div>
+          <div id="gs-currently"></div>
+          <div id="gs-finished"></div>
+          <div id="gs-dropped"></div>
+          <p id="gs-error" class="lb-error">&gt; Could not load book log right now.</p>
         </section>
 
         <div class="h-rule-thin"></div>
@@ -103,8 +76,8 @@
           <h3 class="log-type-heading">&gt; FILMS / <span style="font-size:0.62rem; color:var(--text-dim); letter-spacing:0; font-weight:400;">via Letterboxd</span></h3>
           <div id="lb-loading" class="lb-loading">&gt; loading films...</div>
           <div id="lb-films"></div>
-          <p id="lb-error">&gt; Could not load Letterboxd feed right now.</p>
-          <p style="margin-top:0.6rem;"><a href="https://letterboxd.com/greatwhit3shark1969/" target="_blank" rel="noopener" class="read-more">[view full diary on Letterboxd &rarr;]</a></p>
+          <p id="lb-error" class="lb-error">&gt; Could not load Letterboxd feed right now.</p>
+          <p style="margin-top:0.6rem;"><a href="https://letterboxd.com/ahamed_fuad023/" target="_blank" rel="noopener" class="read-more">[view full diary on Letterboxd &rarr;]</a></p>
         </section>
 
       </div>
@@ -138,6 +111,7 @@
   </div>
 
   <script>
+    // ── CLOCK ────────────────────────────────────────────
     function updateClock() {
       const now = new Date();
       document.getElementById('clock').textContent =
@@ -145,16 +119,115 @@
         .map(n=>String(n).padStart(2,'0')).join(':');
     }
     setInterval(updateClock, 1000); updateClock();
+
     document.getElementById('theme-toggle').addEventListener('click', function() {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rp-theme', next);
     });
 
-    // Letterboxd RSS via rss2json proxy
+    // ── GOOGLE SHEETS BOOKS ──────────────────────────────
+    // Uses the published CSV URL directly — no Sheet ID needed.
+    // To update books, just edit your Google Sheet. Changes appear here automatically.
+    const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEDro1mqm-VVCTZ_7jpKoFWnXLIuES4LTONH7fTWXF27AJCubVHqVqQ1yMcWrdNAmXYPIzliZam2x8/pub?gid=1649237080&single=true&output=csv';
+
+    function statusClass(s) {
+      s = (s || '').toLowerCase();
+      if (s === 'finished') return 'status-finished';
+      if (s === 'reading')  return 'status-reading';
+      if (s === 'dropped')  return 'status-dropped';
+      return '';
+    }
+
+    function parseCSV(text) {
+      // Handles quoted fields with commas inside
+      const lines = text.trim().split('\n');
+      return lines.map(line => {
+        const cols = [];
+        let cur = '', inQuote = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') { inQuote = !inQuote; }
+          else if (ch === ',' && !inQuote) { cols.push(cur.trim()); cur = ''; }
+          else { cur += ch; }
+        }
+        cols.push(cur.trim());
+        return cols;
+      });
+    }
+
+    function renderBook(data) {
+      // data: [Title, Author, Status, Rating, Date, Note]
+      const [title, author, status, rating, date, note] = data;
+      const div = document.createElement('div');
+      div.className = 'log-entry';
+      div.innerHTML = `
+        <div class="log-entry-top">
+          <span class="log-title">${title || ''}</span>
+          ${status ? `<span class="log-status ${statusClass(status)}">${status}</span>` : ''}
+        </div>
+        <div class="log-entry-meta">
+          ${author ? `<span class="log-author">${author}</span>` : ''}
+          ${rating ? `<span class="lb-rating">${rating}</span>` : ''}
+          ${date   ? `<span class="lb-date">${date}</span>` : ''}
+        </div>
+        ${note ? `<p class="log-note">${note}</p>` : ''}
+      `;
+      return div;
+    }
+
+    function makeLabel(text) {
+      const p = document.createElement('p');
+      p.style.cssText = 'font-size:0.68rem;color:var(--text-dim);letter-spacing:2px;margin:0.8rem 0 0.4rem;';
+      p.textContent = text;
+      return p;
+    }
+
+    fetch(SHEET_CSV)
+      .then(r => {
+        if (!r.ok) throw new Error('fetch failed');
+        return r.text();
+      })
+      .then(text => {
+        document.getElementById('gs-loading').style.display = 'none';
+
+        const rows = parseCSV(text);
+        // Row 0 is the header — skip it
+        const dataRows = rows.slice(1).filter(r => r[0] && r[0].length > 0);
+
+        if (dataRows.length === 0) {
+          document.getElementById('gs-error').style.display = 'block';
+          return;
+        }
+
+        const currently = document.getElementById('gs-currently');
+        const finished  = document.getElementById('gs-finished');
+        const dropped   = document.getElementById('gs-dropped');
+        let hasC = false, hasF = false, hasD = false;
+
+        dataRows.forEach(data => {
+          const status = (data[2] || '').toLowerCase();
+          if (status === 'reading') {
+            if (!hasC) { currently.appendChild(makeLabel('— currently reading')); hasC = true; }
+            currently.appendChild(renderBook(data));
+          } else if (status === 'finished') {
+            if (!hasF) { finished.appendChild(makeLabel('— finished')); hasF = true; }
+            finished.appendChild(renderBook(data));
+          } else if (status === 'dropped') {
+            if (!hasD) { dropped.appendChild(makeLabel('— dropped')); hasD = true; }
+            dropped.appendChild(renderBook(data));
+          }
+        });
+      })
+      .catch(() => {
+        document.getElementById('gs-loading').style.display = 'none';
+        document.getElementById('gs-error').style.display = 'block';
+      });
+
+    // ── LETTERBOXD FILMS ─────────────────────────────────
     const LB_USER = 'ahamed_fuad023';
     const RSS_URL = `https://letterboxd.com/${LB_USER}/rss/`;
-    const PROXY = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=10`;
+    const PROXY   = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=10`;
 
     fetch(PROXY)
       .then(r => r.json())
@@ -166,19 +239,15 @@
         }
         const container = document.getElementById('lb-films');
         data.items.forEach(item => {
-          // Parse title: "Film Name, Year - ★★★★"
           const titleRaw = item.title || '';
           const ratingMatch = titleRaw.match(/[★½]+/);
           const rating = ratingMatch ? ratingMatch[0] : '';
           const cleanTitle = titleRaw.replace(/\s*-\s*[★½]*\s*$/, '').trim();
-
-          // Parse date
           const date = item.pubDate ? item.pubDate.slice(0, 10) : '';
-
           const div = document.createElement('div');
           div.className = 'lb-entry';
           div.innerHTML = `
-            <span class="lb-inner">
+            <span>
               <a href="${item.link}" target="_blank" rel="noopener" style="text-decoration:none;">
                 <span class="lb-title">${cleanTitle}</span>
               </a>
