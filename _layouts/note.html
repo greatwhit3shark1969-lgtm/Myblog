@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&family=Arima:wght@400;700&family=Catamaran:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>(function(){const t=localStorage.getItem('rp-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -27,9 +28,8 @@
       </div>
       <nav class="main-nav">
         <a href="/index.html">Home</a>
-        <a href="/blog.html">Posts</a>
+        <a href="/text.html">Text</a>
         <a href="/log.html">Log</a>
-        <a href="/favorites.html">Favorites</a>
         <a href="/about.html">About</a>
       </nav>
       <div class="h-rule"></div>
@@ -39,7 +39,6 @@
       <div class="col-main">
         <article class="full-post">
 
-          <!-- Note header -->
           <div class="post-meta" style="margin-bottom:0.5rem;">
             {% if page.topic %}
             <span class="post-id">{{ page.topic | upcase }}</span>
@@ -55,7 +54,6 @@
           <p class="post-subtitle">{{ page.subtitle }}</p>
           {% endif %}
 
-          <!-- Stage indicator: seed / growing / mature -->
           {% if page.stage %}
           <p style="font-size:0.75rem; color:var(--text-dim); margin-bottom:0.5rem; letter-spacing:1px;">
             STATUS &rarr;
@@ -71,12 +69,10 @@
 
           <div class="h-rule-thin"></div>
 
-          <!-- Note body (your markdown renders here) -->
           <div class="post-body">
             {{ content }}
           </div>
 
-          <!-- Related notes -->
           {% if page.related %}
           <div style="margin-top:2.5rem; border-top:1px solid var(--border); padding-top:1rem;">
             <p style="font-size:0.75rem; color:var(--text-dim); letter-spacing:2px; margin-bottom:0.6rem;">RELATED NOTES</p>
@@ -90,29 +86,19 @@
           </div>
           {% endif %}
 
-          <a href="javascript:history.back()" class="back-link" style="margin-top:2rem; display:inline-block;">[&larr; back]</a>
+          <a href="/text.html" class="back-link" style="margin-top:2rem; display:inline-block;">[&larr; back to all text]</a>
 
         </article>
       </div>
 
-      <!-- Sidebar -->
       <aside class="col-sidebar">
         <div class="sidebar-block">
           <h3 class="sidebar-heading">Navigation</h3>
           <ul>
             <li><a href="/index.html">Home</a></li>
-            <li><a href="/blog.html">Posts</a></li>
+            <li><a href="/text.html">Text</a></li>
             <li><a href="/log.html">Log</a></li>
-            <li><a href="/favorites.html">Favorites</a></li>
             <li><a href="/about.html">About</a></li>
-          </ul>
-        </div>
-        <div class="sidebar-block">
-          <h3 class="sidebar-heading">Topics</h3>
-          <ul>
-            <li><a href="/medicine.html">Medicine</a></li>
-            <li><a href="/philosophy.html">Philosophy</a></li>
-            <li><a href="/observations.html">Observations</a></li>
           </ul>
         </div>
       </aside>
@@ -132,7 +118,6 @@
         .map(n=>String(n).padStart(2,'0')).join(':');
     }
     setInterval(updateClock, 1000); updateClock();
-
     document.getElementById('theme-toggle').addEventListener('click', function() {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
