@@ -56,16 +56,16 @@
     .bq-board {
       position: relative;
       max-width: 680px;
-      margin: 1rem auto 0;
-      background: #0e0e0e;
-      border: 3px solid #111;
-      outline: 2px solid #f0c040;
-      outline-offset: 6px;
-      overflow: visible;
+      margin: 1.5rem auto 0;
+      background: #09090b;
+      border: 4px solid #141416;
+      outline: 2px dashed #c8230a;
+      outline-offset: 8px;
+      overflow: hidden;
       padding: 0;
     }
 
-    /* canvas sits behind everything */
+    /* canvas sits behind everything but mixes with bright color overlays */
     .bq-canvas {
       position: absolute;
       top: 0; left: 0;
@@ -76,355 +76,264 @@
 
     .bq-inner {
       position: relative;
-      z-index: 1;
-      padding: 1.6rem 1.4rem 2.4rem;
+      z-index: 2;
+      padding: 2.5rem 1.8rem 3rem;
     }
 
     /* ─── HEADER ───────────────────────────────────────────── */
     .bq-header {
       position: relative;
-      margin-bottom: 2rem;
+      margin-bottom: 3.5rem;
     }
 
     .bq-main-title {
       font-family: 'Basquiat', 'Permanent Marker', cursive;
-      font-size: clamp(2.8rem, 8vw, 4.2rem);
-      color: #e8e0d0;
-      line-height: 0.9;
-      letter-spacing: 2px;
+      font-size: clamp(3.2rem, 9vw, 5rem);
+      color: #f7f4eb;
+      line-height: 0.85;
+      letter-spacing: -1px;
       text-shadow:
-        4px  4px 0 #c8230a,
-        8px  8px 0 #0d0d0d;
-      transform: rotate(-2deg) translateX(-6px);
+        3px  3px 0 #c8230a,
+        -2px -2px 0 #2060c8;
+      transform: rotate(-3.5deg) translateX(-4px);
       display: inline-block;
     }
 
     .bq-subtitle-scrawl {
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       color: #f0c040;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       display: block;
-      margin-top: 0.6rem;
-      transform: rotate(1.5deg) translateX(10px);
-      opacity: 0.85;
+      margin-top: 0.8rem;
+      transform: rotate(1deg) translateX(5px);
     }
 
-    /* floating scratched box top-right */
     .bq-copyright-box {
       position: absolute;
-      top: -0.8rem;
-      right: -0.4rem;
+      top: -1.2rem;
+      right: 0.2rem;
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.55rem;
-      color: #c8230a;
-      border: 2px solid #c8230a;
-      padding: 2px 5px;
+      font-size: 0.6rem;
+      color: #2060c8;
+      border: 3px double #2060c8;
+      padding: 3px 8px;
       letter-spacing: 2px;
-      transform: rotate(4deg);
-      opacity: 0.7;
+      transform: rotate(7deg);
     }
 
-    /* ─── SECTION WRAPPERS ─────────────────────────────────── */
+    /* ─── DESTRUCTURED BASQUIAT LAYOUT ────────────────────── */
+    .bq-grid-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
     .bq-section {
       position: relative;
-      margin-bottom: 2rem;
     }
 
     .bq-section-label {
       font-family: 'Basquiat', 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 6px;
+      font-size: 1.8rem;
+      letter-spacing: 5px;
       display: inline-block;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.5rem;
       position: relative;
+      z-index: 3;
     }
 
-    /* underline drawn askew */
-    .bq-section-label::after {
-      content: '';
-      display: block;
-      height: 3px;
-      width: 110%;
-      position: absolute;
-      bottom: -2px;
-      left: -4px;
-      transform: rotate(-0.8deg);
+    /* Crossed out words / Redacted styles mimicking original art text markers */
+    .bq-redact {
+      text-decoration: line-through;
+      text-decoration-thickness: 4px;
+      text-decoration-color: #c8230a;
+      opacity: 0.6;
     }
 
-    /* section colours */
-    .bq-section--music  .bq-section-label { color: #f0c040; }
-    .bq-section--music  .bq-section-label::after { background: #e07010; }
+    /* Asymmetric Section Overrides */
+    .bq-section--music {
+      transform: rotate(1deg) translateX(5px);
+    }
+    .bq-section--music .bq-section-label { color: #f0c040; text-shadow: 2px 2px 0px #000; }
 
-    .bq-section--books  .bq-section-label { color: #4090d8; }
-    .bq-section--books  .bq-section-label::after { background: #2060c8; }
+    .bq-section--books {
+      transform: rotate(-1.5deg) translateX(-10px);
+      padding-left: 1rem;
+    }
+    .bq-section--books .bq-section-label { color: #4090d8; text-shadow: 2px 2px 0px #000; }
 
-    .bq-section--links  .bq-section-label { color: #c8230a; }
-    .bq-section--links  .bq-section-label::after { background: #c8230a; }
+    .bq-section--links {
+      transform: rotate(2deg) translateX(12px);
+    }
+    .bq-section--links .bq-section-label { color: #c8230a; text-shadow: 2px 2px 0px #000; }
 
-    .bq-section--quotes .bq-section-label { color: #c8b898; }
-    .bq-section--quotes .bq-section-label::after { background: #7a3a20; }
+    .bq-section--quotes {
+      transform: rotate(-0.5deg);
+    }
 
-    /* ─── ITEMS ────────────────────────────────────────────── */
+    /* ─── PUNCHY SCATTERED ITEMS ───────────────────────────── */
+    .bq-item-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
     .bq-item {
       display: flex;
       align-items: flex-start;
-      gap: 0.5rem;
-      padding: 0.4rem 0;
+      gap: 0.8rem;
       position: relative;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.6rem;
+      border-radius: 2px;
+      backdrop-filter: blur(1px);
+      width: fit-content;
+      max-width: 95%;
     }
 
-    /* deliberate misalignment per item */
-    .bq-item:nth-child(odd)  { transform: translateX(6px)  rotate(0.4deg); }
-    .bq-item:nth-child(even) { transform: translateX(-4px) rotate(-0.5deg); }
-    .bq-item:nth-child(3n)   { transform: translateX(10px) rotate(-0.2deg); }
+    /* Extreme layout shifts for frantic organic composition */
+    .bq-item:nth-child(1) { transform: rotate(-1deg) translateX(4px); border-left: 3px solid #c8230a; }
+    .bq-item:nth-child(2) { transform: rotate(2.5deg) translateX(25px); border-left: 3px solid #f0c040; }
+    .bq-item:nth-child(3) { transform: rotate(-2deg) translateX(8px); border-left: 3px solid #4090d8; }
+    .bq-item:nth-child(4) { transform: rotate(1.8deg) translateX(18px); border-left: 3px solid #e07010; }
 
     .bq-bullet {
       font-family: 'Permanent Marker', cursive;
-      font-size: 1rem;
-      min-width: 1.1rem;
-      line-height: 1.4;
-      flex-shrink: 0;
+      font-size: 1.2rem;
+      color: #c8230a;
+      line-height: 1;
+      margin-top: 2px;
     }
-    .bq-section--music  .bq-bullet { color: #c8230a; }
-    .bq-section--books  .bq-bullet { color: #4090d8; }
-    .bq-section--links  .bq-bullet { color: #f0c040; }
-    .bq-section--quotes .bq-bullet { color: #c8b898; }
 
     .bq-item-main {
       display: flex;
       flex-direction: column;
-      gap: 0.15rem;
-      flex: 1;
+      gap: 0.3rem;
     }
 
     .bq-item-text {
-      font-family: 'Special Elite', cursive;
-      font-size: 0.92rem;
-      color: #e8e0d0;
-      line-height: 1.4;
+      font-family: 'Special Elite', 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: #f7f4eb;
+      line-height: 1.3;
+      font-weight: bold;
     }
+    
     .bq-item-text a {
       color: inherit;
       text-decoration: none;
-      border-bottom: 1px dotted rgba(255,255,255,0.25);
-      transition: color 0.15s;
+      background-image: linear-gradient(120deg, #c8230a 0%, #c8230a 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 0.15em;
+      background-position: 0 88%;
+      transition: background-size 0.25s ease;
     }
-    .bq-item-text a:hover { color: #f0c040; }
+    .bq-item-text a:hover {
+      color: #f0c040;
+      background-size: 100% 100%;
+    }
 
     .bq-tag {
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.52rem;
+      font-size: 0.6rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 1px 5px;
-      display: inline-block;
+      padding: 2px 6px;
       width: fit-content;
-      transform: rotate(-1deg);
+      margin-top: 0.2rem;
+      background: #000;
     }
-    .bq-section--music  .bq-tag { color: #e07010; border: 1px solid #e07010; }
-    .bq-section--books  .bq-tag { color: #4090d8; border: 1px solid #4090d8; }
-    .bq-section--links  .bq-tag { color: #f0c040; border: 1px solid #f0c040; }
-    .bq-section--quotes .bq-tag { color: #c8b898; border: 1px solid #7a3a20; }
+    .bq-section--music  .bq-tag { color: #f0c040; border: 1px dashed #f0c040; transform: rotate(-1deg); }
+    .bq-section--books  .bq-tag { color: #4090d8; border: 1px dashed #4090d8; transform: rotate(2deg); }
+    .bq-section--links  .bq-tag { color: #e07010; border: 1px dashed #e07010; transform: rotate(-2deg); }
 
-    /* ─── CROWN MOTIF (Ilaiyaraaja) ────────────────────────── */
+    /* ─── CROWN & MOTIF GRAPHICS ───────────────────────────── */
     .bq-crown-wrap {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.6rem;
     }
     .bq-crown-svg {
-      display: inline-block;
-      vertical-align: middle;
-      transform: rotate(-6deg) translateY(-3px);
-      filter: drop-shadow(2px 2px 0 #7a3a20);
+      transform: rotate(-8deg) translateY(-2px);
+      filter: drop-shadow(3px 3px 0px #000);
+      flex-shrink: 0;
     }
 
-    /* ─── SCATTERED FLOATING MOTIFS ────────────────────────── */
+    /* Floating Scrawls & Iconography Across Canvas Space */
     .bq-motif {
       position: absolute;
       pointer-events: none;
-      z-index: 2;
+      z-index: 1;
       font-family: 'Permanent Marker', cursive;
-      opacity: 0.55;
       user-select: none;
+      font-weight: normal;
     }
+    .bq-motif--cross-tl { top: 0.8rem; left: 0.6rem; font-size: 1.8rem; color: #c8230a; transform: rotate(-10deg); }
+    .bq-motif--dollar   { top: 5rem; right: 4rem; font-size: 1.4rem; color: #f0c040; transform: rotate(25deg); opacity: 0.8; }
+    .bq-motif--anatom   { top: 12rem; right: -2rem; font-size: 0.55rem; color: #4090d8; letter-spacing: 4px; writing-mode: vertical-rl; transform: rotate(180deg); opacity: 0.4; }
+    .bq-motif--arrow    { bottom: 12rem; left: -0.5rem; font-size: 2rem; color: #e07010; transform: rotate(45deg); }
+    .bq-motif--samo     { bottom: 4.5rem; left: 2.5rem; font-size: 0.55rem; color: #f7f4eb; letter-spacing: 3px; opacity: 0.5; }
 
-    .bq-motif--cross-tl {
-      top: 1.2rem; left: -1.1rem;
-      font-size: 1.4rem;
-      color: #c8230a;
-      transform: rotate(-15deg);
-    }
-    .bq-motif--anatom {
-      top: 3.5rem; right: 1.2rem;
-      font-size: 0.5rem;
-      color: #4090d8;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      opacity: 0.35;
-    }
-    .bq-motif--dollar {
-      top: 0.4rem; right: 3.5rem;
-      font-size: 1.1rem;
-      color: #f0c040;
-      transform: rotate(12deg);
-    }
-    .bq-motif--cross-mid {
-      top: 48%; left: -0.9rem;
-      font-size: 1rem;
-      color: #f0c040;
-      transform: rotate(5deg);
-    }
-    .bq-motif--arrow {
-      bottom: 3.5rem; right: -0.8rem;
-      font-size: 1.3rem;
-      color: #c8230a;
-      transform: rotate(-30deg);
-    }
-    .bq-motif--samo {
-      bottom: 1.8rem; left: 1.2rem;
-      font-size: 0.48rem;
-      color: #c8b898;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      transform: rotate(-2deg);
-      opacity: 0.4;
-    }
-    .bq-motif--box-scratch {
-      bottom: 0.5rem; right: 0.7rem;
-      font-size: 0.55rem;
-      color: #7a3a20;
-      letter-spacing: 5px;
-      opacity: 0.5;
-    }
-    .bq-motif--notreal {
-      top: 60%; right: 0.6rem;
-      font-size: 0.44rem;
-      color: #c8230a;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transform: rotate(90deg);
-      opacity: 0.3;
-    }
-
-    /* ─── HAND-DRAWN DIVIDER ───────────────────────────────── */
-    .bq-divider {
-      border: none;
-      height: 4px;
-      position: relative;
-      margin: 1rem 0 1.4rem;
-      overflow: visible;
-    }
-    .bq-divider::before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      transform: rotate(-0.3deg) scaleX(1.02);
-    }
-    .bq-section--music  + * > .bq-divider::before,
-    .bq-divider.red::before  { background: linear-gradient(90deg, #c8230a 0%, transparent 90%); }
-    .bq-divider.blue::before { background: linear-gradient(90deg, #2060c8 0%, transparent 90%); }
-    .bq-divider.yellow::before { background: linear-gradient(90deg, #f0c040 0%, transparent 90%); }
-
-    /* ─── QUOTE BLOCK ──────────────────────────────────────── */
+    /* ─── ASYMMETRIC QUOTE BLOCK ───────────────────────────── */
     .bq-quote-block {
       position: relative;
-      padding: 1rem 1rem 1rem 1.4rem;
-      border-left: 5px solid #c8230a;
-      background: rgba(200,35,10,0.06);
-      transform: rotate(-0.4deg);
+      padding: 1.5rem;
+      border: 3px solid #c8230a;
+      background: #000;
+      transform: rotate(1.5deg) scale(0.97);
+      box-shadow: 8px 8px 0px #e07010;
+      margin: 1rem 0;
     }
     .bq-quote-block::before {
-      content: '"';
+      content: '“';
       position: absolute;
-      top: -0.6rem; left: 0.7rem;
+      top: -1rem; left: 0.5rem;
       font-family: 'Permanent Marker', cursive;
-      font-size: 3rem;
+      font-size: 4rem;
       color: #c8230a;
-      opacity: 0.35;
       line-height: 1;
     }
     .bq-quote-text {
       font-family: 'Permanent Marker', cursive;
-      font-size: 0.88rem;
-      color: #e8e0d0;
-      line-height: 2;
+      font-size: 1.1rem;
+      color: #f7f4eb;
+      line-height: 1.6;
+      letter-spacing: 1px;
     }
     .bq-quote-src {
       font-family: 'Special Elite', cursive;
-      font-size: 0.62rem;
+      font-size: 0.7rem;
       color: #f0c040;
       letter-spacing: 2px;
       text-transform: uppercase;
       display: block;
       text-align: right;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
     }
 
-    /* ─── PAINTED TOP BAR ──────────────────────────────────── */
+    /* ─── PAINTED HIGHLIGHT TOPBAR ─────────────────────────── */
     .bq-topbar {
-      height: 12px;
+      height: 16px;
       background: #c8230a;
-      border-bottom: 3px solid #0d0d0d;
+      border-bottom: 4px solid #141416;
       position: relative;
     }
-    .bq-topbar::after {
-      content: '';
-      position: absolute;
-      right: 40px; top: 0;
-      width: 60px; height: 100%;
-      background: #f0c040;
-    }
-    .bq-topbar::before {
-      content: '';
-      position: absolute;
-      right: 10px; top: 0;
-      width: 22px; height: 100%;
-      background: #2060c8;
-    }
+    .bq-topbar::after { content: ''; position: absolute; right: 60px; top: 0; width: 45px; height: 100%; background: #f0c040; }
+    .bq-topbar::before { content: ''; position: absolute; right: 15px; top: 0; width: 30px; height: 100%; background: #2060c8; }
 
-    /* ─── SCRIBBLE LABEL ───────────────────────────────────── */
-    .bq-scribble {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 0.55rem;
-      color: #7a3a20;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      opacity: 0.5;
-      display: inline-block;
-      transform: rotate(-2deg);
-      margin-left: 0.8rem;
-      vertical-align: middle;
-    }
-
-    /* ─── FOOTER LINE ──────────────────────────────────────── */
+    /* ─── FOOTER AREA ──────────────────────────────────────── */
     .bq-footer-line {
-      margin-top: 1.2rem;
-      padding-top: 0.6rem;
-      border-top: 2px solid rgba(255,255,255,0.06);
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 3px dashed #141416;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      justify-content: space-between;
     }
-    .bq-footer-cross {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 1.2rem;
-      color: #c8230a;
-      opacity: 0.6;
-    }
-    .bq-footer-text {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.7rem;
-      color: #c8b898;
-      letter-spacing: 4px;
-      opacity: 0.4;
-    }
+    .bq-footer-cross { font-family: 'Permanent Marker', cursive; font-size: 1.4rem; color: #c8230a; letter-spacing: 4px; }
+    .bq-footer-text { font-family: 'Bebas Neue', sans-serif; font-size: 0.8rem; color: #f7f4eb; letter-spacing: 3px; opacity: 0.5; }
   </style>
 </head>
 <body>
@@ -436,6 +345,7 @@
         <span class="sys-time" id="clock">00:00:00</span>
       </span>
     </div>
+    
     <header>
       <div class="site-identity">
         <h1 class="blog-title">RadioPotti<span class="blink">_</span></h1>
@@ -482,161 +392,170 @@
           </a>
         </div>
 
+        <!-- COLLAPSIBLE SECTION: THINGS I LOVE -->
         <button class="collapsible-toggle" id="bq-btn" onclick="toggleBQ()">
           <span class="arrow">▶</span>&nbsp; Things I Love
         </button>
 
         <div class="collapsible-body" id="bq-body">
           <div class="bq-board" id="bq-board">
-
+            
+            <!-- Canvas Engine Layer for Hand-drawn elements -->
             <canvas class="bq-canvas" id="bq-canvas"></canvas>
 
+            <!-- Red, Gold, Blue Top Highlight bar -->
             <div class="bq-topbar"></div>
 
-            <span class="bq-motif bq-motif--cross-tl">✝</span>
+            <!-- Basquiat Motifs and Hidden Text Scrawls Layout -->
+            <span class="bq-motif bq-motif--cross-tl">†</span>
             <span class="bq-motif bq-motif--dollar">$</span>
-            <span class="bq-motif bq-motif--anatom">ANATOMY · PHYSIOLOGY · MORTALITY</span>
-            <span class="bq-motif bq-motif--cross-mid">×</span>
-            <span class="bq-motif bq-motif--arrow">↗</span>
-            <span class="bq-motif bq-motif--samo">SAMO© AS AN ALTERNATIVE TO PLAYING ART WITH THE ART WORLD</span>
-            <span class="bq-motif bq-motif--box-scratch">× × ×</span>
-            <span class="bq-motif bq-motif--notreal">NOT FOR SALE · NOT FOR SALE · NOT FOR SALE</span>
+            <span class="bq-motif bq-motif--anatom">HISTORICAL TEXTS • CLINICAL RECORD • PLASTIC SOUL</span>
+            <span class="bq-motif bq-motif--arrow">➔</span>
+            <span class="bq-motif bq-motif--samo">SAMO© AS AN EXTENSION OF LOGIC</span>
 
             <div class="bq-inner">
-
+              
+              <!-- SECTION HEADER -->
               <div class="bq-header">
-                <span class="bq-copyright-box">©RADIOPOTTI</span>
+                <span class="bq-copyright-box">® POTTI</span>
                 <div class="bq-main-title">THINGS<br>I LOVE</div>
-                <span class="bq-subtitle-scrawl">curated noise · selected signals · radiopotti</span>
+                <span class="bq-subtitle-scrawl">Curated Noise // Selected Signals</span>
               </div>
 
-              <div class="bq-section bq-section--music">
-                <div class="bq-section-label">
-                  MUSIC <span class="bq-scribble">SOUNDS LIKE BLOOD</span>
-                </div>
+              <div class="bq-grid-layout">
+                
+                <!-- MUSIC -->
+                <div class="bq-section bq-section--music">
+                  <div class="bq-section-label">
+                    MUSIC / <span class="bq-redact">RAW NOISE</span>
+                  </div>
+                  
+                  <div class="bq-item-cluster">
+                    <div class="bq-item">
+                      <span class="bq-bullet">★</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text">
+                          <span class="bq-crown-wrap">
+                            <!-- Hand drawn stylized Crown Vector -->
+                            <svg class="bq-crown-svg" width="32" height="24" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <polyline points="2,18 2,5 8,12 14,2 20,12 26,5 26,18" stroke="#f0c040" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                              <line x1="2" y1="18" x2="26" y2="18" stroke="#f0c040" stroke-width="3"/>
+                              <circle cx="2"  cy="5"  r="1.5" fill="#c8230a"/>
+                              <circle cx="14" cy="2"  r="1.5" fill="#c8230a"/>
+                              <circle cx="26" cy="5"  r="1.5" fill="#c8230a"/>
+                            </svg>
+                            <a href="https://music.youtube.com/playlist?list=OLAK5uy_mYrVbKFmiX6uqYBlryzoaj4hYS_vmVLvg&si=uPev1CxGsViiZ6rP" target="_blank" rel="noopener">
+                              Ilaiyaraaja — Hey Ram (2000)
+                            </a>
+                          </span>
+                        </span>
+                        <span class="bq-tag">THE KING'S MEASURE</span>
+                      </div>
+                    </div>
 
-                <div class="bq-item">
-                  <span class="bq-bullet">×</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text">
-                      <span class="bq-crown-wrap">
-                        <svg class="bq-crown-svg" width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                          <polyline points="2,18 2,6 8,13 14,2 20,13 26,6 26,18" stroke="#f0c040" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
-                          <line x1="2" y1="18" x2="26" y2="18" stroke="#f0c040" stroke-width="2.5" stroke-linecap="round"/>
-                          <line x1="5" y1="14" x2="7" y2="17" stroke="#e07010" stroke-width="1" opacity="0.6"/>
-                          <line x1="12" y1="12" x2="14" y2="17" stroke="#e07010" stroke-width="1" opacity="0.6"/>
-                          <line x1="21" y1="14" x2="23" y2="17" stroke="#e07010" stroke-width="1" opacity="0.6"/>
-                          <circle cx="2"  cy="6"  r="2" fill="#f0c040"/>
-                          <circle cx="14" cy="2"  r="2" fill="#f0c040"/>
-                          <circle cx="26" cy="6"  r="2" fill="#f0c040"/>
-                        </svg>
-                        <a href="https://music.youtube.com/playlist?list=OLAK5uy_mYrVbKFmiX6uqYBlryzoaj4hYS_vmVLvg&si=uPev1CxGsViiZ6rP" target="_blank" rel="noopener">
-                          Ilaiyaraaja — Hey Ram (2000)
-                        </a>
-                      </span>
-                    </span>
-                    <span class="bq-tag">PLAYS LIKE MEMORY</span>
+                    <div class="bq-item">
+                      <span class="bq-bullet">★</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text">
+                          <a href="https://youtube.com/playlist?list=OLAK5uy_krhGAQ-2ULbZ6vPEyrGxkNN_prUX4zimk&si=kO9rImheP-G_MnrR" target="_blank" rel="noopener">
+                            A.R. Rahman — Bombay (1995) OST
+                          </a>
+                        </span>
+                        <span class="bq-tag">LIQUID LENS</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bq-item">
-                  <span class="bq-bullet">×</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text">
-                      <a href="https://youtube.com/playlist?list=OLAK5uy_krhGAQ-2ULbZ6vPEyrGxkNN_prUX4zimk&si=kO9rImheP-G_MnrR" target="_blank" rel="noopener">
-                        A.R. Rahman — Bombay (1995) OST
-                      </a>
-                    </span>
-                    <span class="bq-tag">PURE FEELING</span>
-                  </div>
-                </div>
-              </div>
+                <!-- BOOKS -->
+                <div class="bq-section bq-section--books">
+                  <div class="bq-section-label">LITERATURE</div>
+                  
+                  <div class="bq-item-cluster">
+                    <div class="bq-item">
+                      <span class="bq-bullet">✖</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text" lang="ta">ஒரு மனிதன் ஒரு வீடு ஒரு உலகம்</span>
+                        <span class="bq-tag">ஜெயகாந்தன் // BOUNDLESS</span>
+                      </div>
+                    </div>
 
-              <hr class="bq-divider red">
+                    <div class="bq-item">
+                      <span class="bq-bullet">✖</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text">The Murder Of Roger Ackroyd</span>
+                        <span class="bq-tag">AGATHA CHRISTIE</span>
+                      </div>
+                    </div>
 
-              <div class="bq-section bq-section--books">
-                <div class="bq-section-label">
-                  BOOKS <span class="bq-scribble">DEAD TONGUES STILL SPEAK</span>
-                </div>
-
-                <div class="bq-item">
-                  <span class="bq-bullet">—</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text" lang="ta">ஒரு மனிதன் ஒரு வீடு ஒரு உலகம்</span>
-                    <span class="bq-tag">ஜெயகாந்தன்</span>
-                  </div>
-                </div>
-
-                <div class="bq-item">
-                  <span class="bq-bullet">—</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text">The Murder Of Roger Ackroyd</span>
-                    <span class="bq-tag">CHRISTIE</span>
+                    <div class="bq-item">
+                      <span class="bq-bullet">✖</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text">Siddhartha</span>
+                        <span class="bq-tag">HERMANN HESSE</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bq-item">
-                  <span class="bq-bullet">—</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text">Siddhartha</span>
-                    <span class="bq-tag">HESSE</span>
+                <!-- LINKS -->
+                <div class="bq-section bq-section--links">
+                  <div class="bq-section-label">EXTERNAL MARKS</div>
+                  
+                  <div class="bq-item-cluster">
+                    <div class="bq-item">
+                      <span class="bq-bullet">➔</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text"><a href="https://www.are.na/share/WhGjKtS" target="_blank" rel="noopener">Are.na</a></span>
+                        <span class="bq-tag">ANTI-ALGORITHM</span>
+                      </div>
+                    </div>
+                    <div class="bq-item">
+                      <span class="bq-bullet">➔</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text"><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a></span>
+                        <span class="bq-tag">HUMAN ENGINE</span>
+                      </div>
+                    </div>
+                    <div class="bq-item">
+                      <span class="bq-bullet">➔</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text"><a href="https://aeon.co/" target="_blank" rel="noopener">Aeon</a></span>
+                        <span class="bq-tag">LOGIC BLOCK</span>
+                      </div>
+                    </div>
+                    <div class="bq-item">
+                      <span class="bq-bullet">➔</span>
+                      <div class="bq-item-main">
+                        <span class="bq-item-text"><a href="https://www.ubu.com/index.html" target="_blank" rel="noopener">UbuWeb</a></span>
+                        <span class="bq-tag">VANGUARD VAULT</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <hr class="bq-divider blue">
-
-              <div class="bq-section bq-section--links">
-                <div class="bq-section-label">
-                  LINKS <span class="bq-scribble">QUIETER INTERNET</span>
-                </div>
-
-                <div class="bq-item">
-                  <span class="bq-bullet">↗</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text"><a href="https://www.are.na/share/WhGjKtS" target="_blank" rel="noopener">Are.na</a></span>
-                    <span class="bq-tag">QUIETER INTERNET</span>
+                <!-- QUOTES -->
+                <div class="bq-section bq-section--quotes">
+                  <div class="bq-section-label">FRAGMENTS</div>
+                  <div class="bq-quote-block">
+                    <p class="bq-quote-text">EVERY SINGLE LINE MEANS SOMETHING CHOSEN FROM THE FIRE.</p>
+                    <span class="bq-quote-src">— SAMO© NOSTALGIA</span>
                   </div>
                 </div>
-                <div class="bq-item">
-                  <span class="bq-bullet">↗</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text"><a href="https://psyche.co" target="_blank" rel="noopener">Psyche</a></span>
-                    <span class="bq-tag">MIND + LIFE</span>
-                  </div>
-                </div>
-                <div class="bq-item">
-                  <span class="bq-bullet">↗</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text"><a href="https://aeon.co/" target="_blank" rel="noopener">Aeon</a></span>
-                    <span class="bq-tag">SCIENCE + PHILOSOPHY</span>
-                  </div>
-                </div>
-                <div class="bq-item">
-                  <span class="bq-bullet">↗</span>
-                  <div class="bq-item-main">
-                    <span class="bq-item-text"><a href="https://www.ubu.com/index.html" target="_blank" rel="noopener">UbuWeb</a></span>
-                    <span class="bq-tag">SHADOW LIBRARY</span>
-                  </div>
-                </div>
-              </div>
 
-              <hr class="bq-divider yellow">
+              </div> <!-- /bq-grid-layout -->
 
-              <div class="bq-section bq-section--quotes">
-                <div class="bq-section-label">QUOTES</div>
-                <div class="bq-quote-block">
-                  <p class="bq-quote-text">Add your quotes here.</p>
-                  <span class="bq-quote-src">— source</span>
-                </div>
-              </div>
-
+              <!-- FOOTER MARKINGS -->
               <div class="bq-footer-line">
-                <span class="bq-footer-cross">✝ ✝ ✝</span>
-                <span class="bq-footer-text">EST. 2025 · RADIOPOTTI · SAMO©</span>
+                <span class="bq-footer-cross">† † †</span>
+                <span class="bq-footer-text">EST. 2025 // RADIOPOTTI ARCHIVE</span>
               </div>
 
-            </div></div></div><div class="h-rule-thin" style="margin-top:2rem;"></div>
+            </div> <!-- /bq-inner -->
+          </div> <!-- /bq-board -->
+        </div> <!-- /collapsible-body -->
+
+        <div class="h-rule-thin" style="margin-top:2rem;"></div>
         <a href="index.html" class="back-link">&larr; back to home</a>
       </div>
 
@@ -674,7 +593,7 @@
       localStorage.setItem('rp-theme', next);
     });
 
-    /* ── BASQUIAT TOGGLE & CANVAS ENGINE ─────────────────────── */
+    /* ── BASQUIAT TOGGLE & HIGH-SATURATION CANVAS ENGINE ─────── */
     function toggleBQ() {
       const btn  = document.getElementById('bq-btn');
       const body = document.getElementById('bq-body');
@@ -699,19 +618,20 @@
       function rnd(min, max) { return Math.random() * (max - min) + min; }
       function rndInt(min, max) { return Math.floor(rnd(min, max)); }
 
+      // Rough primitive lines mimicking grease oil sticks
       function roughLine(x1, y1, x2, y2, color, width, alpha) {
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.strokeStyle = color;
         ctx.lineWidth   = width;
-        ctx.lineCap     = 'round';
+        ctx.lineCap     = 'square';
         ctx.beginPath();
         ctx.moveTo(x1, y1);
-        const steps = 8;
+        const steps = 12;
         for (let i = 1; i < steps; i++) {
           const t  = i / steps;
-          const mx = x1 + (x2 - x1) * t + rnd(-4, 4);
-          const my = y1 + (y2 - y1) * t + rnd(-3, 3);
+          const mx = x1 + (x2 - x1) * t + rnd(-6, 6);
+          const my = y1 + (y2 - y1) * t + rnd(-4, 4);
           ctx.lineTo(mx, my);
         }
         ctx.lineTo(x2, y2);
@@ -719,18 +639,19 @@
         ctx.restore();
       }
 
-      function blob(cx, cy, rx, ry, color, alpha) {
+      // Punchier high-density canvas color blocks
+      function rawPaintPatch(cx, cy, rx, ry, color, alpha) {
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.fillStyle   = color;
         ctx.beginPath();
-        const pts = 12;
+        const pts = 16;
         for (let i = 0; i <= pts; i++) {
           const a  = (i / pts) * Math.PI * 2;
-          const ox = rnd(0.75, 1.25);
-          const oy = rnd(0.75, 1.25);
-          const x  = cx + Math.cos(a) * rx * ox;
-          const y  = cy + Math.sin(a) * ry * oy;
+          const skewX = rnd(0.6, 1.4);
+          const skewY = rnd(0.6, 1.4);
+          const x  = cx + Math.cos(a) * rx * skewX;
+          const y  = cy + Math.sin(a) * ry * skewY;
           i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
         ctx.closePath();
@@ -738,14 +659,14 @@
         ctx.restore();
       }
 
-      function splatter(cx, cy, count, radius, color, alpha) {
+      function textureSplatter(cx, cy, count, radius, color, alpha) {
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.fillStyle   = color;
         for (let i = 0; i < count; i++) {
           const angle = rnd(0, Math.PI * 2);
-          const dist  = rnd(0, radius);
-          const r     = rnd(0.5, 2.5);
+          const dist  = rnd(5, radius);
+          const r     = rnd(1, 4);
           ctx.beginPath();
           ctx.arc(cx + Math.cos(angle) * dist, cy + Math.sin(angle) * dist, r, 0, Math.PI * 2);
           ctx.fill();
@@ -753,60 +674,41 @@
         ctx.restore();
       }
 
-      blob(W * 0.08, H * 0.12, 55, 35, '#c8230a', 0.07);
-      blob(W * 0.85, H * 0.25, 70, 45, '#2060c8', 0.06);
-      blob(W * 0.5,  H * 0.5,  90, 60, '#f0c040', 0.04);
-      blob(W * 0.15, H * 0.75, 50, 40, '#c8230a', 0.05);
-      blob(W * 0.9,  H * 0.8,  60, 50, '#e07010', 0.06);
-      blob(W * 0.6,  H * 0.1,  40, 30, '#f0c040', 0.05);
+      // High contrast deep paint passes behind elements
+      rawPaintPatch(W * 0.15, H * 0.08, 110, 65, '#c8230a', 0.22); // Intense Red top left
+      rawPaintPatch(W * 0.82, H * 0.22, 130, 80, '#2060c8', 0.18); // Blue splash under Music/Books
+      rawPaintPatch(W * 0.40, H * 0.48, 160, 95, '#f0c040', 0.15); // Vibrant Gold across center
+      rawPaintPatch(W * 0.78, H * 0.72, 120, 85, '#e07010', 0.18); // Cadmium orange field
+      rawPaintPatch(W * 0.22, H * 0.90, 140, 75, '#c8230a', 0.20); // Base Red anchor
 
-      roughLine(4, 4, W - 4, 4, '#c8230a', 3, 0.6);          
-      roughLine(4, H - 4, W - 4, H - 4, '#f0c040', 2, 0.4);  
-      roughLine(4, 4, 4, H - 4, '#2060c8', 2, 0.3);          
-      roughLine(W - 4, 4, W - 4, H - 4, '#c8230a', 2, 0.3);  
+      // Erratic structural frame scratches
+      roughLine(10, 15, W - 10, 8, '#c8230a', 4, 0.7);
+      roughLine(20, H - 15, W - 5, H - 25, '#f0c040', 3, 0.6);
+      roughLine(12, 12, 22, H - 12, '#2060c8', 4, 0.5);
 
-      const scratchColors = ['#7a3a20', '#c8230a', '#f0c040', '#2060c8'];
-      for (let i = 0; i < 7; i++) {
-        const x1 = rnd(0, W); const y1 = rnd(0, H);
-        const len = rnd(30, 100);
-        const ang = rnd(0, Math.PI * 2);
-        roughLine(
-          x1, y1,
-          x1 + Math.cos(ang) * len,
-          y1 + Math.sin(ang) * len,
-          scratchColors[rndInt(0, scratchColors.length)],
-          rnd(0.5, 1.5), 0.08
-        );
+      // Frantic crosshatches and strike-throughs
+      const crownColors = ['#f0c040', '#c8230a', '#2060c8'];
+      for (let i = 0; i < 9; i++) {
+        const x = rnd(20, W - 40);
+        const y = rnd(40, H - 40);
+        roughLine(x, y, x + rnd(40, 110), y + rnd(-10, 15), crownColors[rndInt(0, 3)], rnd(1.5, 3), 0.25);
       }
 
-      splatter(W * 0.2, H * 0.35, 18, 22, '#c8230a', 0.25);
-      splatter(W * 0.75, H * 0.6, 14, 18, '#f0c040', 0.2);
-      splatter(W * 0.9,  H * 0.15, 10, 14, '#e07010', 0.2);
-      splatter(W * 0.45, H * 0.88, 12, 16, '#2060c8', 0.18);
+      // Splatters falling out elegantly across sections
+      textureSplatter(W * 0.25, H * 0.15, 30, 45, '#c8230a', 0.4);
+      textureSplatter(W * 0.70, H * 0.38, 25, 40, '#2060c8', 0.35);
+      textureSplatter(W * 0.85, H * 0.65, 35, 50, '#f0c040', 0.4);
+      textureSplatter(W * 0.35, H * 0.82, 20, 35, '#e07010', 0.3);
 
+      // Huge ghost watermark text layer matching SAMO aesthetic
       ctx.save();
-      ctx.globalAlpha = 0.06;
-      ctx.strokeStyle = '#f0c040';
-      ctx.lineWidth   = 1;
-      for (let i = 0; i < 10; i++) {
-        const ox = W - 80 + i * 8;
-        ctx.beginPath();
-        ctx.moveTo(ox, 12);
-        ctx.lineTo(ox - 40, 80);
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      ctx.save();
-      ctx.globalAlpha = 0.03;
-      ctx.fillStyle   = '#e8e0d0';
-      ctx.font        = `bold ${Math.floor(H * 0.35)}px 'Permanent Marker', cursive`;
-      ctx.textBaseline = 'middle';
-      ctx.save();
+      ctx.globalAlpha = 0.05;
+      ctx.fillStyle   = '#f7f4eb';
+      ctx.font        = `bold ${Math.floor(H * 0.09)}px 'Permanent Marker', cursive`;
       ctx.translate(W * 0.5, H * 0.5);
-      ctx.rotate(-0.15);
-      ctx.fillText('SAMO', -W * 0.32, 0);
-      ctx.restore();
+      ctx.rotate(-0.25);
+      ctx.fillText('SAMO© IS DEAD', -W * 0.4, 0);
+      ctx.fillText('DISEASE PROTOCOL', -W * 0.35, H * 0.15);
       ctx.restore();
     }
 
