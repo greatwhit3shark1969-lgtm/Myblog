@@ -169,9 +169,10 @@
     }
     .bq-section--links .bq-section-label { color: #c8230a; text-shadow: 2px 2px 0px #000; }
 
-    .bq-section--quotes {
-      transform: rotate(-0.5deg);
+    .bq-section--cuneiform {
+      transform: rotate(-1deg);
     }
+    .bq-section--cuneiform .bq-section-label { color: #e07010; text-shadow: 2px 2px 0px #000; }
 
     /* ─── PUNCHY SCATTERED ITEMS ───────────────────────────── */
     .bq-item-cluster {
@@ -248,6 +249,7 @@
     .bq-section--music  .bq-tag { color: #f0c040; border: 1px dashed #f0c040; transform: rotate(-1deg); }
     .bq-section--books  .bq-tag { color: #4090d8; border: 1px dashed #4090d8; transform: rotate(2deg); }
     .bq-section--links  .bq-tag { color: #e07010; border: 1px dashed #e07010; transform: rotate(-2deg); }
+    .bq-section--cuneiform .bq-tag { color: #c8230a; border: 1px dashed #c8230a; transform: rotate(1deg); }
 
     /* ─── CROWN & MOTIF GRAPHICS ───────────────────────────── */
     .bq-crown-wrap {
@@ -276,41 +278,32 @@
     .bq-motif--arrow    { bottom: 12rem; left: -0.5rem; font-size: 2rem; color: #e07010; transform: rotate(45deg); }
     .bq-motif--samo     { bottom: 4.5rem; left: 2.5rem; font-size: 0.55rem; color: #f7f4eb; letter-spacing: 3px; opacity: 0.5; }
 
-    /* ─── ASYMMETRIC QUOTE BLOCK ───────────────────────────── */
-    .bq-quote-block {
+    /* ─── SCRAWLED ANTIQUE TABLET BLOCK ────────────────────── */
+    .bq-tablet-block {
       position: relative;
       padding: 1.5rem;
-      border: 3px solid #c8230a;
+      border: 3px solid #e07010;
       background: #000;
-      transform: rotate(1.5deg) scale(0.97);
-      box-shadow: 8px 8px 0px #e07010;
+      transform: rotate(1deg) scale(0.98);
+      box-shadow: 8px 8px 0px #c8230a;
       margin: 1rem 0;
     }
-    .bq-quote-block::before {
-      content: '“';
-      position: absolute;
-      top: -1rem; left: 0.5rem;
-      font-family: 'Permanent Marker', cursive;
-      font-size: 4rem;
-      color: #c8230a;
-      line-height: 1;
-    }
-    .bq-quote-text {
+    .bq-tablet-text {
       font-family: 'Permanent Marker', cursive;
       font-size: 1.1rem;
       color: #f7f4eb;
-      line-height: 1.6;
-      letter-spacing: 1px;
-    }
-    .bq-quote-src {
-      font-family: 'Special Elite', cursive;
-      font-size: 0.7rem;
-      color: #f0c040;
+      line-height: 1.5;
       letter-spacing: 2px;
-      text-transform: uppercase;
+    }
+    .bq-tablet-subtext {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.75rem;
+      color: #4090d8;
+      line-height: 1.4;
       display: block;
-      text-align: right;
       margin-top: 1rem;
+      border-top: 1px dashed rgba(255,255,255,0.2);
+      padding-top: 0.6rem;
     }
 
     /* ─── PAINTED HIGHLIGHT TOPBAR ─────────────────────────── */
@@ -534,12 +527,20 @@
                   </div>
                 </div>
 
-                <!-- QUOTES -->
-                <div class="bq-section bq-section--quotes">
-                  <div class="bq-section-label">FRAGMENTS</div>
-                  <div class="bq-quote-block">
-                    <p class="bq-quote-text">EVERY SINGLE LINE MEANS SOMETHING CHOSEN FROM THE FIRE.</p>
-                    <span class="bq-quote-src">— SAMO© NOSTALGIA</span>
+                <!-- CUNEIFORM TABLET REPLACEMENT -->
+                <div class="bq-section bq-section--cuneiform">
+                  <div class="bq-section-label">THE CUNEIFORM TABLET</div>
+                  <div class="bq-tablet-block">
+                    <p class="bq-tablet-text">
+                      <span class="bq-redact">ša naqba īmuru</span> lu-u mu-du-u ka-la-ma<br>
+                      HE WHO SAW THE DEEP, <span style="color:#f0c040;">FOUNDATION OF THE LAND.</span><br>
+                      [... <span class="bq-redact">NINURTA</span> ...] <br>
+                      AN-MA-AN / <span style="text-decoration: underline; text-decoration-color:#c8230a; text-underline-offset:4px;">SUMER</span> // AKKAD.
+                    </p>
+                    <span class="bq-tablet-subtext">
+                      — TABLET I, LINE 1 // RAW EXCAVATION PROTOCOL 01
+                    </span>
+                    <span class="bq-tag">CLAY SHARDS PRESERVED IN ASBESTOS</span>
                   </div>
                 </div>
 
