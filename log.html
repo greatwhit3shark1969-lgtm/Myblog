@@ -17,14 +17,28 @@
       grid-template-columns: 1fr auto;
       align-items: baseline;
       gap: 0 0.8rem;
+      position: relative;
     }
     .lb-entry:first-of-type { border-top: 1px solid var(--border); }
     .lb-title { font-size: 0.9rem; color: var(--text-bright); font-weight: 700; }
     .lb-rating { color: var(--accent); letter-spacing: 1px; font-size: 0.75rem; }
+    .lb-heart { color: var(--accent); font-size: 0.8rem; margin-left: 0.25rem; }
     .lb-date { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; }
     .lb-note { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
     .lb-loading { font-size: 0.82rem; color: var(--text-dim); }
     .lb-error { font-size: 0.78rem; color: var(--text-dim); display: none; }
+    .lb-toggle {
+      font-size: 0.65rem; color: var(--text-dim); background: none;
+      border: 1px solid var(--border); padding: 0.05rem 0.4rem;
+      margin-top: 0.3rem; cursor: pointer; font-family: inherit;
+      grid-column: 1 / -1; width: fit-content;
+    }
+    .lb-toggle:hover { color: var(--text-bright); border-color: var(--text-dim); }
+    .lb-comment {
+      font-size: 0.78rem; color: var(--text-dim); line-height: 1.4;
+      margin-top: 0.3rem; display: none; grid-column: 1 / -1;
+    }
+    .lb-comment.show { display: block; }
   </style>
 </head>
 <body>
@@ -238,12 +252,30 @@
           return;
         }
         const container = document.getElementById('lb-films');
-        data.items.forEach(item => {
+        data.items.forEach((item, idx) => {
           const titleRaw = item.title || '';
+
+          // Star rating (handles half-stars)
           const ratingMatch = titleRaw.match(/[★½]+/);
           const rating = ratingMatch ? ratingMatch[0] : '';
-          const cleanTitle = titleRaw.replace(/\s*-\s*[★½]*\s*$/, '').trim();
+
+          // Heart/like indicator
+          const hasHeart = /♥/.test(titleRaw);
+
+          // Strip the trailing " - ★★★½ ♥" style suffix entirely
+          const cleanTitle = titleRaw.replace(/\s*-\s*[★½♥\s]+$/, '').trim();
+
           const date = item.pubDate ? item.pubDate.slice(0, 10) : '';
+
+          // Extract review/comment text from description, stripping the poster image
+          let comment = '';
+          if (item.description) {
+            const tmp = document.createElement('div');
+            tmp.innerHTML = item.description;
+            tmp.querySelectorAll('img').forEach(img => img.remove());
+            comment = tmp.textContent.replace(/\s+/g, ' ').trim();
+          }
+
           const div = document.createElement('div');
           div.className = 'lb-entry';
           div.innerHTML = `
@@ -251,11 +283,26 @@
               <a href="${item.link}" target="_blank" rel="noopener" style="text-decoration:none;">
                 <span class="lb-title">${cleanTitle}</span>
               </a>
-              ${rating ? `<div class="lb-rating">${rating}</div>` : ''}
+              <div>
+                ${rating ? `<span class="lb-rating">${rating}</span>` : ''}
+                ${hasHeart ? `<span class="lb-heart">♥</span>` : ''}
+              </div>
             </span>
             <span class="lb-date">${date}</span>
+            ${comment ? `<button class="lb-toggle" data-idx="${idx}">[+ note]</button>` : ''}
+            ${comment ? `<div class="lb-comment" id="lb-comment-${idx}">${comment}</div>` : ''}
           `;
           container.appendChild(div);
+        });
+
+        // Toggle handlers for notes
+        container.querySelectorAll('.lb-toggle').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = btn.dataset.idx;
+            const noteEl = document.getElementById(`lb-comment-${idx}`);
+            const isShown = noteEl.classList.toggle('show');
+            btn.textContent = isShown ? '[- note]' : '[+ note]';
+          });
         });
       })
       .catch(() => {
